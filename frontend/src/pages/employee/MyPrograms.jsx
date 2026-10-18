@@ -83,15 +83,15 @@ export default function MyPrograms() {
 
   const handleEnroll = async (e, program) => {
     e.stopPropagation();
+    const progKey = program.slug || program.id;
     try {
-      setEnrollLoading(program.id);
-      await programService.enrollProgram(program.id);
+      setEnrollLoading(progKey);
+      await programService.enrollProgram(progKey);
       await fetchPrograms();
-      navigate(`/employee/programs/${program.slug || program.id}`);
+      navigate(`/employee/program/${progKey}`);
     } catch (err) {
       console.error("Enrollment failed:", err);
-      // Fallback navigate
-      navigate(`/employee/programs/${program.slug || program.id}`);
+      navigate(`/employee/program/${progKey}`);
     } finally {
       setEnrollLoading(null);
     }
@@ -340,7 +340,7 @@ export default function MyPrograms() {
           {isCompleted ? (
             <div style={{ display: "flex", gap: 8 }}>
               <Link
-                to={`/employee/programs/${program.slug || program.id}`}
+                to={`/employee/program/${program.slug || program.id}`}
                 style={{
                   flex: 1,
                   display: "inline-flex",
@@ -407,7 +407,7 @@ export default function MyPrograms() {
             </div>
           ) : isAwaitingVerification ? (
             <Link
-              to={`/employee/programs/${program.slug || program.id}`}
+              to={`/employee/program/${program.slug || program.id}`}
               style={{
                 width: "100%",
                 boxBox: "border-box",
@@ -430,7 +430,7 @@ export default function MyPrograms() {
             </Link>
           ) : isInProgress ? (
             <Link
-              to={`/employee/programs/${program.slug || program.id}`}
+              to={`/employee/program/${program.slug || program.id}`}
               style={{
                 width: "100%",
                 display: "inline-flex",
@@ -453,7 +453,7 @@ export default function MyPrograms() {
           ) : (
             <div style={{ display: "flex", gap: 8 }}>
               <Link
-                to={`/employee/programs/${program.slug || program.id}`}
+                to={`/employee/program/${program.slug || program.id}`}
                 style={{
                   flex: 1,
                   display: "inline-flex",
@@ -474,7 +474,7 @@ export default function MyPrograms() {
               <button
                 type="button"
                 onClick={(e) => handleEnroll(e, program)}
-                disabled={enrollLoading === program.id}
+                disabled={enrollLoading === (program.slug || program.id)}
                 style={{
                   flex: 1.4,
                   display: "inline-flex",
@@ -488,10 +488,10 @@ export default function MyPrograms() {
                   color: "#ffffff",
                   background: "#0f766e",
                   border: "none",
-                  cursor: enrollLoading === program.id ? "wait" : "pointer"
+                  cursor: enrollLoading === (program.slug || program.id) ? "wait" : "pointer"
                 }}
               >
-                <span>{enrollLoading === program.id ? "Enrolling..." : "Enroll Now"}</span>
+                <span>{enrollLoading === (program.slug || program.id) ? "Enrolling..." : "Enroll Now"}</span>
                 <ArrowRight size={14} />
               </button>
             </div>

@@ -424,7 +424,7 @@ export const employeeService = {
   },
 
   getProgramById: (programId) => {
-    return OFFICIAL_PROGRAMS.find((p) => p.id === programId) || null;
+    return OFFICIAL_PROGRAMS.find((p) => p.id === programId || p.slug === programId || p.tag?.toLowerCase() === programId?.toLowerCase()) || null;
   },
 
   enrollProgram: (programId, userId) => {

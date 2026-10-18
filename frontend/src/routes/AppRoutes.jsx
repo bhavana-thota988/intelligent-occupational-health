@@ -86,7 +86,9 @@ export default function AppRoutes() {
         <Route path="risk-profile" element={<RiskProfile />} />
         <Route path="recommendations" element={<Recommendations />} />
         <Route path="program/:programId" element={<ProgramDetail />} />
+        <Route path="programs/:programId" element={<ProgramDetail />} />
         <Route path="my-programs" element={<MyPrograms />} />
+        <Route path="programs" element={<MyPrograms />} />
         <Route path="certificates" element={<Certificates />} />
         <Route path="my-progress" element={<MyProgress />} />
         <Route path="profile" element={<Profile />} />

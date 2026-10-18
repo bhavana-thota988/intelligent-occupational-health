@@ -79,7 +79,7 @@ export default function ProgramDetail() {
   const handleEnroll = async () => {
     try {
       setLoading(true);
-      await programService.enrollProgram(program.id);
+      await programService.enrollProgram(program.slug || program.id);
       await loadProgram();
     } catch (err) {
       console.error("Enroll failed:", err);
@@ -96,7 +96,7 @@ export default function ProgramDetail() {
     setErrorMessage("");
     setActionSuccessMessage("");
     try {
-      const res = await programService.completeModule(program.id, currentMod.id, practicalNotes);
+      const res = await programService.completeModule(program.slug || program.id, currentMod.id || currentMod.order, practicalNotes);
       setActionSuccessMessage(`Module "${currentMod.title}" completed successfully! Progress: ${res.progress}%`);
       setPracticalNotes("");
       await loadProgram();
@@ -141,7 +141,7 @@ export default function ProgramDetail() {
     setErrorMessage("");
     setActionSuccessMessage("");
     try {
-      const res = await programService.submitQuiz(program.id, answersArray);
+      const res = await programService.submitQuiz(program.slug || program.id, answersArray);
       setQuizResult(res);
       await loadProgram();
       if (res.passed) {
@@ -175,7 +175,7 @@ export default function ProgramDetail() {
     setErrorMessage("");
     setActionSuccessMessage("");
     try {
-      const res = await programService.submitForVerification(program.id, reflectionNotes);
+      const res = await programService.submitForVerification(program.slug || program.id, reflectionNotes);
       setActionSuccessMessage(res.message || "Submitted to specialist for review!");
       await loadProgram();
     } catch (err) {

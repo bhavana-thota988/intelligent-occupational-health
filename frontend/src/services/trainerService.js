@@ -1,5 +1,6 @@
 import { dataStore, OFFICIAL_PROGRAMS } from "./dataStore";
 import { authService } from "./authService";
+import { programService } from "./programService";
 
 export const trainerService = {
   // Returns actual registered employees with their risk profile and active course
@@ -21,11 +22,34 @@ export const trainerService = {
     return reviews.find((r) => r.id === reviewId) || null;
   },
 
-  approveReview: (reviewId, trainerName, feedback) => {
-    return dataStore.approveReview(reviewId, trainerName, feedback);
+  approveReview: (reviewId, trainerName, feedback, observations = "") => {
+    // Call backend API if possible
+    const reviews = dataStore.getTrainerReviews();
+    const review = reviews.find((r) => String(r.id) === String(reviewId));
+    const enrollmentId = review?.enrollmentId || (Number.isInteger(Number(reviewId)) ? Number(reviewId) : null);
+    if (enrollmentId) {
+      programService.trainerVerify({
+        enrollmentId,
+        action: "approve",
+        feedback,
+        observations
+      }).catch((err) => console.warn("Backend verify sync notice:", err.message));
+    }
+    return dataStore.approveReview(reviewId, trainerName, feedback, observations);
   },
 
   requestCorrection: (reviewId, trainerName, feedback) => {
+    const reviews = dataStore.getTrainerReviews();
+    const review = reviews.find((r) => String(r.id) === String(reviewId));
+    const enrollmentId = review?.enrollmentId || (Number.isInteger(Number(reviewId)) ? Number(reviewId) : null);
+    if (enrollmentId) {
+      programService.trainerVerify({
+        enrollmentId,
+        action: "reject",
+        feedback,
+        observations: ""
+      }).catch((err) => console.warn("Backend reject sync notice:", err.message));
+    }
     return dataStore.requestReviewCorrection(reviewId, trainerName, feedback);
   },
 

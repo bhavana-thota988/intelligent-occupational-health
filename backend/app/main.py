@@ -7,7 +7,8 @@ from app.core.database import Base, engine, SessionLocal
 from app.core.security import get_password_hash
 from app.core.bootstrap import bootstrap_admin_account
 from app.models.entities import User, Department, Program, HealthArticle, HealthCampaign, HealthResource
-from app.routers import auth, employee, hr, trainer, admin
+from app.routers import auth, employee, hr, trainer, admin, programs
+from app.services.wellness_program_service import seed_all_programs
 
 def seed_initial_data():
     db = SessionLocal()
@@ -47,14 +48,8 @@ def seed_initial_data():
             ]
             db.add_all(sample_depts)
 
-        if db.query(Program).count() == 0:
-            sample_progs = [
-                Program(title="Ergonomic Workstation Improvement", category="Posture", description="Workstation layout optimization and monitor positioning.", trainer_name="Dr. Sarah Jenkins", duration="4 Weeks", total_modules=6, target_risk_area="Posture"),
-                Program(title="Workday Movement & Mobility Program", category="Activity", description="Structured micro-breaks and mobility routines for desk-bound employees.", trainer_name="Marcus Vance", duration="3 Weeks", total_modules=5, target_risk_area="Activity"),
-                Program(title="Stress Recovery & Resilience Program", category="Stress", description="Cognitive reset and autonomic nervous regulation techniques.", trainer_name="Elena Rostova", duration="4 Weeks", total_modules=6, target_risk_area="Stress"),
-                Program(title="Healthy Sleep & Recovery Protocol", category="Recovery", description="Circadian alignment and evening boundary management.", trainer_name="Dr. Sarah Jenkins", duration="2 Weeks", total_modules=4, target_risk_area="Recovery")
-            ]
-            db.add_all(sample_progs)
+        # Seed or synchronize the 6 official corporate wellness programs
+        seed_all_programs(db)
 
         # Seed Health Articles
         if db.query(HealthArticle).count() == 0:
@@ -237,6 +232,7 @@ app.add_middleware(
 # Include Routers
 app.include_router(auth.router, prefix="/api")
 app.include_router(employee.router, prefix="/api")
+app.include_router(programs.router, prefix="/api")
 app.include_router(hr.router, prefix="/api")
 app.include_router(trainer.router, prefix="/api")
 app.include_router(admin.router, prefix="/api")

@@ -1,5 +1,5 @@
 import datetime
-from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Text, Boolean
+from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Text, Boolean, UniqueConstraint
 from sqlalchemy.orm import relationship
 from app.core.database import Base
 
@@ -64,26 +64,114 @@ class Program(Base):
     __tablename__ = "programs"
 
     id = Column(Integer, primary_key=True, index=True)
+    slug = Column(String(100), unique=True, index=True, nullable=True)
     title = Column(String(150), nullable=False)
-    category = Column(String(50), nullable=False) # Posture, Activity, Stress, Recovery, General
+    category = Column(String(100), nullable=False) # Ergonomic Wellness, Stress Management, Fatigue and Sleep Management, Workplace Safety Essentials, Healthy Lifestyle at Work, Digital Eye Care
+    tag = Column(String(50), nullable=True)
     description = Column(Text, nullable=False)
+    overview = Column(Text, nullable=True)
+    learning_objectives_json = Column(Text, nullable=True)
     trainer_name = Column(String(100), default="Dr. Sarah Jenkins")
-    duration = Column(String(50), default="4 Weeks")
-    total_modules = Column(Integer, default=6)
+    trainer_id = Column(String(50), default="TR-3001")
+    trainer_role = Column(String(100), default="Lead Occupational Ergonomist & Physical Therapist")
+    duration = Column(String(50), default="3 Weeks")
+    total_modules = Column(Integer, default=4)
     target_risk_area = Column(String(50), default="Posture")
+    passing_threshold = Column(Integer, default=75)
+    requires_trainer_verification = Column(Boolean, default=True)
+
+    modules = relationship("ProgramModule", back_populates="program", cascade="all, delete-orphan", order_by="ProgramModule.module_order")
+    quiz = relationship("ProgramQuiz", back_populates="program", uselist=False, cascade="all, delete-orphan")
+    enrollments = relationship("EmployeeProgram", back_populates="program", cascade="all, delete-orphan")
+
+class ProgramModule(Base):
+    __tablename__ = "program_modules"
+
+    id = Column(Integer, primary_key=True, index=True)
+    program_id = Column(Integer, ForeignKey("programs.id"), nullable=False)
+    module_order = Column(Integer, nullable=False) # 1, 2, 3, 4
+    title = Column(String(200), nullable=False)
+    estimated_duration = Column(String(50), default="15 mins")
+    summary = Column(Text, nullable=False)
+    content_markdown = Column(Text, nullable=False)
+    key_takeaways_json = Column(Text, nullable=True)
+    practical_activity = Column(Text, nullable=False)
+    activity_instructions = Column(Text, nullable=True)
+
+    program = relationship("Program", back_populates="modules")
+
+class ProgramQuiz(Base):
+    __tablename__ = "program_quizzes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    program_id = Column(Integer, ForeignKey("programs.id"), nullable=False, unique=True)
+    title = Column(String(200), nullable=False)
+    description = Column(Text, nullable=False)
+    passing_threshold = Column(Integer, default=75)
+    questions_json = Column(Text, nullable=False)
+
+    program = relationship("Program", back_populates="quiz")
 
 class EmployeeProgram(Base):
     __tablename__ = "employee_programs"
+    __table_args__ = (UniqueConstraint("user_id", "program_id", name="uq_user_program"),)
 
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     program_id = Column(Integer, ForeignKey("programs.id"), nullable=False)
-    progress = Column(Integer, default=0)
-    status = Column(String(30), default="In Progress")
+    enrollment_source = Column(String(50), default="Recommended") # Assigned, Recommended, Self-Enrolled
+    progress = Column(Integer, default=0) # 0 to 100
+    status = Column(String(40), default="In Progress") # Not Started, In Progress, Awaiting Verification, Completed, Needs Correction
+    completed_module_ids_json = Column(Text, default="[]") # JSON list of module IDs
+    practical_notes = Column(Text, nullable=True)
+    quiz_passed = Column(Boolean, default=False)
+    quiz_score = Column(Float, nullable=True)
+    quiz_attempts_count = Column(Integer, default=0)
     enrolled_at = Column(DateTime, default=datetime.datetime.utcnow)
+    submitted_for_verification_at = Column(DateTime, nullable=True)
+    verified_at = Column(DateTime, nullable=True)
+    verified_by_trainer_id = Column(String(50), nullable=True)
+    verified_by_trainer_name = Column(String(100), nullable=True)
+    trainer_feedback = Column(Text, nullable=True)
+    completed_at = Column(DateTime, nullable=True)
+    certificate_id = Column(String(50), nullable=True)
 
     user = relationship("User", back_populates="enrolled_programs")
-    program = relationship("Program")
+    program = relationship("Program", back_populates="enrollments")
+
+class QuizAttempt(Base):
+    __tablename__ = "quiz_attempts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    program_id = Column(Integer, ForeignKey("programs.id"), nullable=False)
+    enrollment_id = Column(Integer, ForeignKey("employee_programs.id"), nullable=False)
+    score_pct = Column(Float, nullable=False)
+    passed = Column(Boolean, nullable=False)
+    total_questions = Column(Integer, nullable=False)
+    correct_answers = Column(Integer, nullable=False)
+    submitted_answers_json = Column(Text, nullable=False)
+    attempted_at = Column(DateTime, default=datetime.datetime.utcnow)
+
+class CertificateRecord(Base):
+    __tablename__ = "certificates"
+    __table_args__ = (UniqueConstraint("user_id", "program_id", name="uq_cert_user_program"),)
+
+    id = Column(Integer, primary_key=True, index=True)
+    certificate_id = Column(String(50), unique=True, index=True, nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    program_id = Column(Integer, ForeignKey("programs.id"), nullable=False)
+    employee_name = Column(String(120), nullable=False)
+    employee_email = Column(String(120), nullable=False)
+    employee_id_number = Column(String(50), nullable=True)
+    program_title = Column(String(150), nullable=False)
+    program_category = Column(String(100), nullable=False)
+    trainer_name = Column(String(100), nullable=False)
+    trainer_id = Column(String(50), nullable=False)
+    issued_at = Column(DateTime, default=datetime.datetime.utcnow)
+    issue_date_str = Column(String(50), nullable=False)
+    status = Column(String(30), default="Valid") # Valid, Revoked
+    qr_verification_url = Column(String(255), nullable=False)
 
 class CoachingSession(Base):
     __tablename__ = "coaching_sessions"

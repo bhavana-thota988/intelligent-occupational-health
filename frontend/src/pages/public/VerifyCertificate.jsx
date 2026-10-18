@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ShieldCheck, Search, Award, CheckCircle2, ArrowLeft, AlertCircle } from "lucide-react";
+import { ShieldCheck, Search, Award, CheckCircle2, ArrowLeft, AlertCircle, QrCode } from "lucide-react";
+import { programService } from "../../services/programService";
 import { dataStore } from "../../services/dataStore";
 
 export default function VerifyCertificate() {
@@ -8,6 +9,7 @@ export default function VerifyCertificate() {
   const [query, setQuery] = useState(certificateId || "");
   const [result, setResult] = useState(null);
   const [searched, setSearched] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (certificateId) {
@@ -15,14 +17,36 @@ export default function VerifyCertificate() {
     }
   }, [certificateId]);
 
-  const handleSearch = (idToSearch) => {
+  const handleSearch = async (idToSearch) => {
     const term = (idToSearch || query).trim().toUpperCase();
     if (!term) return;
 
     setSearched(true);
+    setLoading(true);
+
+    try {
+      // 1. Try querying backend database endpoint
+      const cert = await programService.getCertificate(term);
+      if (cert) {
+        setResult({
+          certificateId: cert.certificateId || cert.certificate_id,
+          employeeName: cert.employeeName || cert.employee_name,
+          programName: cert.programTitle || cert.program_title,
+          trainerName: cert.trainerName || cert.trainer_name,
+          issuedAt: cert.issuedAt || cert.issue_date_str,
+          status: cert.status,
+          verificationUrl: cert.qrUrl || window.location.href
+        });
+        setLoading(false);
+        return;
+      }
+    } catch (e) {
+      console.warn("Backend certificate check returned 404 or failed, checking fallback:", e.message);
+    }
+
+    // 2. Fallback to local storage registry
     const certsMap = dataStore.get("user_certificates", {});
     let found = null;
-
     Object.values(certsMap).forEach((list) => {
       list.forEach((c) => {
         if (c.certificateId?.toUpperCase() === term) {
@@ -32,6 +56,7 @@ export default function VerifyCertificate() {
     });
 
     setResult(found);
+    setLoading(false);
   };
 
   return (
@@ -64,7 +89,7 @@ export default function VerifyCertificate() {
               Workplace Credential Verification
             </h1>
             <p style={{ fontSize: "13.5px", color: "var(--text-muted)", margin: 0 }}>
-              Verify authentic occupational health completion credentials issued by certified ergonomists.
+              Verify authentic occupational health completion credentials issued by certified ergonomists and occupational health specialists.
             </p>
           </div>
 
@@ -79,12 +104,13 @@ export default function VerifyCertificate() {
             />
             <button
               type="button"
+              disabled={loading}
               onClick={() => handleSearch()}
               className="btn-primary"
               style={{ padding: "10px 22px", whiteSpace: "nowrap" }}
             >
               <Search size={15} />
-              <span>Verify</span>
+              <span>{loading ? "Verifying..." : "Verify"}</span>
             </button>
           </div>
 
@@ -99,12 +125,17 @@ export default function VerifyCertificate() {
                     padding: "24px",
                     display: "flex",
                     flexDirection: "column",
-                    gap: 12
+                    gap: 14
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--color-primary)", marginBottom: 4 }}>
-                    <CheckCircle2 size={20} />
-                    <strong style={{ fontSize: "15px" }}>Official Credential Verified</strong>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, color: "var(--color-primary)" }}>
+                      <CheckCircle2 size={20} />
+                      <strong style={{ fontSize: "15px" }}>Official Credential Verified (ISO 45001)</strong>
+                    </div>
+                    <span style={{ fontSize: "11.5px", fontWeight: 700, color: "#065f46", background: "#d1fae5", padding: "2px 8px", borderRadius: 4 }}>
+                      AUTHENTIC RECORD
+                    </span>
                   </div>
 
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, fontSize: "13px" }}>
@@ -113,7 +144,7 @@ export default function VerifyCertificate() {
                       <strong style={{ color: "var(--text-heading)" }}>{result.employeeName}</strong>
                     </div>
                     <div>
-                      <span style={{ color: "var(--text-muted)", display: "block" }}>Program:</span>
+                      <span style={{ color: "var(--text-muted)", display: "block" }}>Program Title:</span>
                       <strong style={{ color: "var(--text-heading)" }}>{result.programName}</strong>
                     </div>
                     <div>
@@ -127,7 +158,7 @@ export default function VerifyCertificate() {
                   </div>
 
                   <div style={{ borderTop: "1px solid #DCEFEB", paddingTop: 10, fontSize: "11.5px", color: "var(--text-muted)", fontFamily: "monospace" }}>
-                    Credential Hash: {result.certificateId} • Verified against Corporate Data Registry
+                    Credential Registry ID: <strong>{result.certificateId}</strong> • Verified against WorkHealth AI Occupational Health Registry
                   </div>
                 </div>
               ) : (
@@ -145,7 +176,7 @@ export default function VerifyCertificate() {
                   }}
                 >
                   <AlertCircle size={20} />
-                  <span>No credential matching <strong>"{query}"</strong> was found in the official registry. Please check the ID.</span>
+                  <span>No credential matching <strong>"{query}"</strong> was found in the official registry or it has been revoked. Please verify the ID.</span>
                 </div>
               )}
             </div>

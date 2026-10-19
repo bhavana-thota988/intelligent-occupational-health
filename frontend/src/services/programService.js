@@ -204,6 +204,8 @@ export const programService = {
     const currentProg = progressMap[userId][slug];
     currentProg.quizPassed = passed;
     currentProg.quizScore = scorePct;
+    currentProg.quizCorrectCount = correctCount;
+    currentProg.quizTotalQuestions = questions.length;
     currentProg.quizAttemptsCount = (currentProg.quizAttemptsCount || 0) + 1;
 
     // Recalculate progress
@@ -552,7 +554,7 @@ export const programService = {
       trainerName: prog.trainer_name,
       trainerRole: prog.trainer_role,
       targetRiskArea: prog.target_risk_area,
-      passingThreshold: prog.passing_threshold || 75,
+      passingThreshold: prog.passing_threshold || 60,
       requiresTrainerVerification: prog.requires_trainer_verification,
       isEnrolled: !!userProg.isEnrolled,
       status: userProg.status || (userProg.isEnrolled ? "In Progress" : "Not Enrolled"),
@@ -561,12 +563,14 @@ export const programService = {
       modules,
       userProgress: {
         ...userProg,
-        completedModuleIds: completedIds
+        completedModuleIds: completedIds,
+        quizCorrectCount: userProg.quizCorrectCount !== undefined ? userProg.quizCorrectCount : (userProg.quizPassed ? 5 : null),
+        quizTotalQuestions: userProg.quizTotalQuestions || (prog.quiz?.questions?.length || 5)
       },
       quiz: {
         title: prog.quiz?.title || "Knowledge Assessment",
         description: prog.quiz?.description || "Verify your understanding.",
-        passingThreshold: prog.passing_threshold || 75,
+        passingThreshold: prog.passing_threshold || 60,
         questions: quizQuestions,
         totalQuestions: quizQuestions.length
       },

@@ -65,7 +65,9 @@ export default function ProgramDetail() {
         setQuizResult({
           score: data.userProgress.quizScore,
           passed: data.userProgress.quizPassed,
-          passingScore: data.passingThreshold || 60
+          passingScore: data.passingThreshold || 60,
+          correctCount: data.userProgress.quizCorrectCount !== undefined ? data.userProgress.quizCorrectCount : (data.userProgress.quizPassed ? 5 : 0),
+          totalQuestions: data.userProgress.quizTotalQuestions || data.quiz?.questions?.length || 5
         });
       }
     } catch (err) {
@@ -145,9 +147,7 @@ export default function ProgramDetail() {
       setQuizResult(res);
       await loadProgram();
       if (res.passed) {
-        setActionSuccessMessage(`Congratulations! You passed the assessment with a score of ${res.score}%!`);
-      } else {
-        setErrorMessage(`Assessment score: ${res.score}%. Passing threshold is ${res.passingThreshold}%. You may retake the quiz.`);
+        setActionSuccessMessage("Congratulations! You completed the assessment successfully!");
       }
     } catch (err) {
       console.error("Quiz submission error:", err);
@@ -739,7 +739,7 @@ export default function ProgramDetail() {
               {program.quiz?.title || `${program.title} Knowledge Assessment`}
             </h2>
             <p style={{ fontSize: 14, color: "#64748b", margin: 0, lineHeight: 1.5 }}>
-              {program.quiz?.description || `Verify your understanding of ${program.title}. Minimum passing threshold is ${program.passingThreshold || 75}%. Answers are validated on the backend.`}
+              {program.quiz?.description || `Verify your understanding of ${program.title}. Complete all 5 questions below.`}
             </p>
           </div>
 
@@ -747,28 +747,49 @@ export default function ProgramDetail() {
           {quizResult && (
             <div
               style={{
-                background: quizResult.passed ? "#ecfdf5" : "#fff1f2",
-                border: quizResult.passed ? "1.5px solid #a7f3d0" : "1.5px solid #fecdd3",
+                background: quizResult.passed ? "#f0fdf4" : "#f8fafc",
+                border: quizResult.passed ? "1.5px solid #86efac" : "1.5px solid #cbd5e1",
                 borderRadius: 12,
-                padding: "20px 24px",
-                marginBottom: 28,
+                padding: "18px 22px",
+                marginBottom: 24,
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 flexWrap: "wrap",
-                gap: 16
+                gap: 14
               }}
             >
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  {quizResult.passed ? <CheckCircle2 size={22} color="#059669" /> : <AlertCircle size={22} color="#e11d48" />}
-                  <h3 style={{ fontSize: 18, fontWeight: 800, color: quizResult.passed ? "#065f46" : "#9f1239", margin: 0 }}>
-                    {quizResult.passed ? "Knowledge Assessment Passed!" : "Passing Score Not Met"}
+                  {quizResult.passed ? (
+                    <CheckCircle2 size={20} color="#16a34a" />
+                  ) : (
+                    <Clock size={20} color="#64748b" />
+                  )}
+                  <h3
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 700,
+                      color: quizResult.passed ? "#15803d" : "#334155",
+                      margin: 0
+                    }}
+                  >
+                    {quizResult.passed ? "Assessment Completed" : "Assessment Result"}
                   </h3>
                 </div>
-                <p style={{ fontSize: 13.5, color: quizResult.passed ? "#047857" : "#be123c", margin: "6px 0 0" }}>
-                  Your evaluated score: <strong>{quizResult.score}%</strong> (Required threshold: {quizResult.passingThreshold || 75}%).
-                  {quizResult.passed ? " You have satisfied the knowledge requirement for certification." : " You may retake the assessment to improve your score."}
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: quizResult.passed ? "#166534" : "#475569",
+                    margin: "6px 0 0",
+                    fontWeight: 500
+                  }}
+                >
+                  {quizResult.passed ? (
+                    <>You answered <strong>{quizResult.correctCount !== undefined ? quizResult.correctCount : 5} of {quizResult.totalQuestions || 5}</strong> questions correctly.</>
+                  ) : (
+                    <>You answered <strong>{quizResult.correctCount !== undefined ? quizResult.correctCount : 0} of {quizResult.totalQuestions || 5}</strong> questions correctly. You can review the questions and try again.</>
+                  )}
                 </p>
               </div>
 
@@ -783,15 +804,15 @@ export default function ProgramDetail() {
                     padding: "8px 16px",
                     borderRadius: 8,
                     background: "#ffffff",
-                    color: "#be123c",
-                    border: "1px solid #fecdd3",
-                    fontWeight: 700,
+                    color: "#334155",
+                    border: "1px solid #cbd5e1",
+                    fontWeight: 600,
                     fontSize: 13,
                     cursor: "pointer"
                   }}
                 >
-                  <RotateCcw size={15} />
-                  <span>Retake Assessment</span>
+                  <RotateCcw size={14} />
+                  <span>Try Again</span>
                 </button>
               )}
             </div>
@@ -974,7 +995,7 @@ export default function ProgramDetail() {
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 {quizPassed ? <CheckCircle2 size={20} color="#15803d" /> : <Clock size={20} color="#94a3b8" />}
                 <span style={{ fontSize: 14, fontWeight: 600, color: quizPassed ? "#15803d" : "#334155" }}>
-                  2. Pass Knowledge Assessment (Score: {userProg.quizScore || 0}%, Required: ≥60%)
+                  2. Pass Knowledge Assessment {quizPassed ? "(Completed)" : "(5 Questions)"}
                 </span>
               </div>
               <span style={{ fontSize: 12.5, fontWeight: 700, color: quizPassed ? "#15803d" : "#64748b" }}>

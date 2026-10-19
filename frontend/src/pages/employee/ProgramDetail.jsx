@@ -65,7 +65,7 @@ export default function ProgramDetail() {
         setQuizResult({
           score: data.userProgress.quizScore,
           passed: data.userProgress.quizPassed,
-          passingScore: data.passingThreshold || 75
+          passingScore: data.passingThreshold || 60
         });
       }
     } catch (err) {
@@ -932,7 +932,7 @@ export default function ProgramDetail() {
               Certification & Specialist Verification
             </h2>
             <p style={{ fontSize: 14, color: "#64748b", margin: 0 }}>
-              Under corporate occupational health standards, certificates are awarded only after all modules are finished, assessment is passed (≥75%), and workplace practice is verified by an assigned Specialist.
+              Under corporate occupational health standards, certificates are awarded only after all modules are finished, assessment is passed (≥60%), and workplace practice is verified by an assigned Specialist.
             </p>
           </div>
 
@@ -974,7 +974,7 @@ export default function ProgramDetail() {
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 {quizPassed ? <CheckCircle2 size={20} color="#15803d" /> : <Clock size={20} color="#94a3b8" />}
                 <span style={{ fontSize: 14, fontWeight: 600, color: quizPassed ? "#15803d" : "#334155" }}>
-                  2. Pass Knowledge Assessment (Score: {userProg.quizScore || 0}%, Required: ≥75%)
+                  2. Pass Knowledge Assessment (Score: {userProg.quizScore || 0}%, Required: ≥60%)
                 </span>
               </div>
               <span style={{ fontSize: 12.5, fontWeight: 700, color: quizPassed ? "#15803d" : "#64748b" }}>

@@ -184,13 +184,14 @@ export const programService = {
     const questions = prog.quiz?.questions || [];
     let correctCount = 0;
     questions.forEach((q, idx) => {
-      if (answers[idx] !== undefined && answers[idx] === q.correct_option) {
+      const targetIdx = q.correct_index !== undefined ? q.correct_index : q.correct_option;
+      if (answers[idx] !== undefined && (answers[idx] === targetIdx || answers[idx] === q.correct_option)) {
         correctCount += 1;
       }
     });
 
     const scorePct = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 100;
-    const passingThreshold = prog.passing_threshold || 75;
+    const passingThreshold = prog.passing_threshold || 60;
     const passed = scorePct >= passingThreshold;
 
     // Update dataStore

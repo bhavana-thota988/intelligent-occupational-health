@@ -22,7 +22,7 @@ WELLNESS_PROGRAMS_DATA = [
         "trainer_role": "Lead Occupational Ergonomist & Physical Therapist",
         "duration": "3 Weeks",
         "target_risk_area": "Posture",
-        "passing_threshold": 75,
+        "passing_threshold": 60,
         "requires_trainer_verification": True,
         "modules": [
             {
@@ -30,17 +30,7 @@ WELLNESS_PROGRAMS_DATA = [
                 "title": "Correct Sitting Posture & Spine Neutrality",
                 "estimated_duration": "15 mins",
                 "summary": "Biomechanical fundamentals of seated spinal alignment, neutral pelvis positioning, and distributing upper body mass.",
-                "content_markdown": """### Understanding Neutral Spinal Biomechanics
-
-Sitting for extended durations exerts up to **40% more intradiscal pressure** on the lumbar spine than standing upright. When employees slouch or tilt forward, the natural S-curve of the vertebral column collapses into a C-shape, placing excessive tensile strain on posterior spinal ligaments and deep back musculature.
-
-#### Key Principles of Neutral Sitting:
-1. **Neutral Pelvic Tilt:** Sit directly on the ischial tuberosities ('sit bones'). Avoid posterior pelvic tilting where your tailbone tucks under and lower back rounds against the backrest.
-2. **Triple 90-Degree Rule:** 
-   - Hips flexed at 90° to 100° relative to torso
-   - Knees bent at 90° with a 2-to-3 finger gap between the seat edge and popliteal fossa (back of knees)
-   - Feet planted completely flat on the floor or on a firm, angled footrest.
-3. **Cervical Alignment:** Your ears should sit directly vertically above your shoulders, not jutting forward toward the computer screen.""",
+                "content_markdown": "### Understanding Neutral Spinal Biomechanics\n\nSitting for extended durations exerts up to **40% more intradiscal pressure** on the lumbar spine than standing upright. When employees slouch or tilt forward, the natural S-curve of the vertebral column collapses into a C-shape, placing excessive tensile strain on posterior spinal ligaments and deep back musculature.\n\n#### Key Principles of Neutral Sitting:\n1. **Neutral Pelvic Tilt:** Sit directly on the ischial tuberosities ('sit bones'). Avoid posterior pelvic tilting where your tailbone tucks under and lower back rounds against the backrest.\n2. **Triple 90-Degree Rule:** \n   - Hips flexed at 90\u00b0 to 100\u00b0 relative to torso\n   - Knees bent at 90\u00b0 with a 2-to-3 finger gap between the seat edge and popliteal fossa (back of knees)\n   - Feet planted completely flat on the floor or on a firm, angled footrest.\n3. **Cervical Alignment:** Your ears should sit directly vertically above your shoulders, not jutting forward toward the computer screen.",
                 "key_takeaways": [
                     "Maintain the natural inward curve (lordosis) of the lumbar spine",
                     "Keep feet flat on the floor to offload pressure from your lower back",
@@ -54,19 +44,7 @@ Sitting for extended durations exerts up to **40% more intradiscal pressure** on
                 "title": "Desk, Chair & Monitor Height Adjustment",
                 "estimated_duration": "20 mins",
                 "summary": "Step-by-step physical calibration of office furniture and display hardware to fit individual anthropometric dimensions.",
-                "content_markdown": """### Calibrating Your Workstation Layout
-
-No two human bodies have identical limb lengths. An unadjusted generic workstation forces the human body to contort to the desk, resulting in chronic shoulder elevation, eye strain, and thoracic fatigue.
-
-#### Sequential Calibration Protocol:
-1. **Chair Height First:** Adjust chair cylinder height until your resting elbows form a 90° to 100° angle when hands rest on the keyboard home row.
-2. **Monitor Elevation & Distance:**
-   - The top third of your active screen should align with your relaxed horizontal eye level.
-   - Position screen at approximately one arm's length (20 to 28 inches) away from your face.
-   - If using dual monitors, position the primary monitor directly centered in front of your nose, or angle both symmetrically if used equally.
-3. **Keyboard & Mouse Proximity:**
-   - Keep keyboard and mouse on the same horizontal plane.
-   - Position them so forearms rest parallel to the desk surface without reaching forward.""",
+                "content_markdown": "### Calibrating Your Workstation Layout\n\nNo two human bodies have identical limb lengths. An unadjusted generic workstation forces the human body to contort to the desk, resulting in chronic shoulder elevation, eye strain, and thoracic fatigue.\n\n#### Sequential Calibration Protocol:\n1. **Chair Height First:** Adjust chair cylinder height until your resting elbows form a 90\u00b0 to 100\u00b0 angle when hands rest on the keyboard home row.\n2. **Monitor Elevation & Distance:**\n   - The top third of your active screen should align with your relaxed horizontal eye level.\n   - Position screen at approximately one arm's length (20 to 28 inches) away from your face.\n   - If using dual monitors, position the primary monitor directly centered in front of your nose, or angle both symmetrically if used equally.\n3. **Keyboard & Mouse Proximity:**\n   - Keep keyboard and mouse on the same horizontal plane.\n   - Position them so forearms rest parallel to the desk surface without reaching forward.",
                 "key_takeaways": [
                     "Adjust chair height first before touching desk or monitor adjustments",
                     "The top third of the monitor screen should be at horizontal eye level",
@@ -80,16 +58,9 @@ No two human bodies have identical limb lengths. An unadjusted generic workstati
                 "title": "Neck, Back & Wrist Strain Prevention",
                 "estimated_duration": "15 mins",
                 "summary": "Preventing repetitive strain injury (RSI), thoracic outlet syndrome, cervical radiculopathy, and carpal tunnel compression.",
-                "content_markdown": """### Eliminating Musculoskeletal Micro-Trauma
-
-Repetitive keyboard typing and sustained mouse gripping compress the median nerve inside the carpal tunnel and overload the upper trapezius and levator scapulae muscles. Over weeks, microscopic tendon tears lead to chronic pain and inflammation.
-
-#### Biomechanical Guidelines for Upper Limb Protection:
-1. **Neutral Wrist Alignment:** Wrists should remain straight and floating while typing. Never rest wrist creases directly on sharp desk edges or hard laptop palm rests while actively keying.
-2. **Mouse Grip Dynamics:** Grip the mouse loosely with relaxed fingers. Move the mouse from your elbow and shoulder, rather than repeatedly flicking your wrist sideways (ulnar deviation).
-3. **Chin Tuck Exercise:** Counteract 'text neck' and forward head posture by gently gliding your chin backward as if making a subtle double chin. Hold for 5 seconds to strengthen deep cervical flexors.""",
+                "content_markdown": "### Eliminating Musculoskeletal Micro-Trauma\n\nRepetitive keyboard typing and sustained mouse gripping compress the median nerve inside the carpal tunnel and overload the upper trapezius and levator scapulae muscles. Over weeks, microscopic tendon tears lead to chronic pain and inflammation.\n\n#### Biomechanical Guidelines for Upper Limb Protection:\n1. **Neutral Wrist Alignment:** Wrists should remain straight and floating while typing. Never rest wrist creases directly on sharp desk edges or hard laptop palm rests while actively keying.\n2. **Mouse Grip Dynamics:** Grip the mouse loosely with relaxed fingers. Move the mouse from your elbow and shoulder, rather than repeatedly flicking your wrist sideways (ulnar deviation).\n3. **Chin Tuck Exercise:** Counteract 'text neck' and forward head posture by gently gliding your chin backward as if making a subtle double chin. Hold for 5 seconds to strengthen deep cervical flexors.",
                 "key_takeaways": [
-                    "Keep wrists in a straight, neutral line—avoid upward bending or resting on desk edges",
+                    "Keep wrists in a straight, neutral line\u2014avoid upward bending or resting on desk edges",
                     "Perform chin tucks every hour to offload cervical vertebrae",
                     "Relax your grip on the mouse and use keyboard shortcuts to reduce mouse clicks"
                 ],
@@ -101,23 +72,7 @@ Repetitive keyboard typing and sustained mouse gripping compress the median nerv
                 "title": "Safe Computer Usage & Workstation Layout Audit",
                 "estimated_duration": "15 mins",
                 "summary": "Executing an OSHA-aligned 12-point ergonomic workstation self-audit and establishing permanent sustainable desk habits.",
-                "content_markdown": """### Comprehensive Workstation Ergonomic Self-Audit
-
-Sustainable occupational health requires recurring audits. A setup that feels comfortable at 9:00 AM may cause fatigue by 3:00 PM if dynamic posture breaks are neglected.
-
-#### The 12-Point OSHA-Aligned Workplace Audit:
-- [x] Feet supported flat on floor or footrest
-- [x] Thighs parallel to ground with 2-3 inch clearance behind knees
-- [x] Lumbar support nestled into lower back curvature
-- [x] Elbows resting at 90°-100° beside torso
-- [x] Wrists straight without contact stress on sharp desk borders
-- [x] Monitor top 1/3 at eye level, arm's length away
-- [x] Screen free of direct window or overhead light glare
-- [x] Documents placed on an in-line copy holder between keyboard and monitor
-- [x] Frequently used items (water, notebook, phone) within 14 inches of body
-- [x] 50/10 workday cadence instituted: stand or move every 50 minutes
-- [x] Lighting adequate without requiring squinting or leaning forward
-- [x] Telephone headset used instead of cradling receiver between neck and shoulder""",
+                "content_markdown": "### Comprehensive Workstation Ergonomic Self-Audit\n\nSustainable occupational health requires recurring audits. A setup that feels comfortable at 9:00 AM may cause fatigue by 3:00 PM if dynamic posture breaks are neglected.\n\n#### The 12-Point OSHA-Aligned Workplace Audit:\n- [x] Feet supported flat on floor or footrest\n- [x] Thighs parallel to ground with 2-3 inch clearance behind knees\n- [x] Lumbar support nestled into lower back curvature\n- [x] Elbows resting at 90\u00b0-100\u00b0 beside torso\n- [x] Wrists straight without contact stress on sharp desk borders\n- [x] Monitor top 1/3 at eye level, arm's length away\n- [x] Screen free of direct window or overhead light glare\n- [x] Documents placed on an in-line copy holder between keyboard and monitor\n- [x] Frequently used items (water, notebook, phone) within 14 inches of body\n- [x] 50/10 workday cadence instituted: stand or move every 50 minutes\n- [x] Lighting adequate without requiring squinting or leaning forward\n- [x] Telephone headset used instead of cradling receiver between neck and shoulder",
                 "key_takeaways": [
                     "Re-audit workstation whenever chair, monitor, or desk hardware changes",
                     "Never cradle a phone between neck and shoulder; use a headset",
@@ -128,53 +83,64 @@ Sustainable occupational health requires recurring audits. A setup that feels co
             }
         ],
         "quiz": {
-            "title": "Ergonomic Wellness Knowledge Assessment",
-            "description": "Demonstrate your understanding of neutral sitting posture, display calibration, and wrist strain mitigation.",
-            "passing_threshold": 75,
+            "title": "Ergonomic Wellness Quick Assessment",
+            "description": "5 quick questions on workstation posture and pain prevention.",
+            "passing_threshold": 60,
             "questions": [
                 {
-                    "question": "What is the optimal vertical alignment for your primary computer monitor?",
+                    "question": "How should your computer monitor be positioned?",
                     "options": [
-                        "The center of the screen should be 5 inches above your forehead",
-                        "The top third of the screen should align with your horizontal eye level",
-                        "The bottom of the screen should touch your desk surface",
-                        "The monitor should be tilted 45 degrees upward toward the ceiling"
+                        "Top of the screen aligned with eye level",
+                        "High up toward the ceiling",
+                        "Below your knees",
+                        "Tilted completely to the side"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Aligning the top third of the monitor with horizontal eye level prevents neck hyperextension and cervical spine fatigue."
+                    "correct_index": 0,
+                    "explanation": "Aligning the top of your screen with eye level prevents neck strain."
                 },
                 {
-                    "question": "When seated at your workstation, what angle should your elbows ideally maintain while typing?",
+                    "question": "How should your feet be placed while sitting at your desk?",
                     "options": [
-                        "45 to 60 degrees with hands close to chest",
-                        "90 to 100 degrees with shoulders relaxed and forearms parallel to desk",
-                        "140 to 160 degrees with arms reaching far forward",
-                        "Any angle is acceptable as long as you lean on the desk"
+                        "Crossed tightly behind the chair legs",
+                        "Hanging without touching anything",
+                        "Flat on the floor or on a footrest",
+                        "Resting on top of the computer table"
                     ],
-                    "correct_index": 1,
-                    "explanation": "A 90-100 degree elbow angle keeps the shoulders depressed and prevents chronic upper trapezius tension."
+                    "correct_index": 2,
+                    "explanation": "Feet flat on the floor supports your lower back."
                 },
                 {
-                    "question": "What is the correct way to position your wrists while actively typing?",
+                    "question": "What is the recommended elbow angle while typing on a keyboard?",
                     "options": [
-                        "Bent sharply upward resting heavily on a hard desk edge",
-                        "Straight and in a neutral plane, floating slightly above the keys",
-                        "Tilted outward toward the pinky fingers as far as possible",
-                        "Resting the palm creases on the laptop touchpad"
+                        "Reaching far forward with locked arms",
+                        "Around 90 degrees with shoulders relaxed",
+                        "Raised high above your chest",
+                        "Bent completely tight against your ribs"
                     ],
                     "correct_index": 1,
-                    "explanation": "Keeping wrists straight and neutral avoids compression of the median nerve inside the carpal tunnel."
+                    "explanation": "A 90-degree elbow angle keeps shoulders and neck relaxed."
                 },
                 {
-                    "question": "Why is static sitting in one 'ideal' posture for 8 hours still harmful to your body?",
+                    "question": "How often is it best to stand up, stretch, or change your posture?",
                     "options": [
-                        "Because computer screens emit gravitational waves",
-                        "Because static postures impede circulation, disc nutrition, and cause muscle ischemia",
-                        "It is not harmful; perfect posture eliminates all need for movement",
-                        "Because office chairs lose their cushion within 2 hours"
+                        "Once every 8 hours",
+                        "Only when extreme pain occurs",
+                        "Every 45 to 60 minutes",
+                        "Never during office hours"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Spinal intervertebral discs lack direct blood supply and depend on movement-driven fluid exchange to receive nutrients."
+                    "correct_index": 2,
+                    "explanation": "Taking micro-breaks every 45-60 minutes keeps blood flowing and muscles healthy."
+                },
+                {
+                    "question": "What helps prevent wrist pain while typing?",
+                    "options": [
+                        "Keeping wrists straight and in a neutral position",
+                        "Bending wrists sharply backward on a hard desk edge",
+                        "Slouching forward heavily",
+                        "Typing using only one hand"
+                    ],
+                    "correct_index": 0,
+                    "explanation": "Straight, neutral wrists avoid pressure on the carpal tunnel nerves."
                 }
             ]
         }
@@ -197,7 +163,7 @@ Sustainable occupational health requires recurring audits. A setup that feels co
         "trainer_role": "Certified Occupational Wellbeing & Stress Specialist",
         "duration": "4 Weeks",
         "target_risk_area": "Stress",
-        "passing_threshold": 75,
+        "passing_threshold": 60,
         "requires_trainer_verification": True,
         "modules": [
             {
@@ -205,18 +171,7 @@ Sustainable occupational health requires recurring audits. A setup that feels co
                 "title": "Understanding Workplace Stress & Cortisol Cycles",
                 "estimated_duration": "15 mins",
                 "summary": "Biological mechanisms of sympathetic arousal, acute vs chronic stress, and physical warning signs of burnout.",
-                "content_markdown": """### The Neurobiology of Workplace Stress
-
-When confronted with sudden high-stakes deadlines, critical messages, or heavy workload, the amygdala signals the hypothalamus to release epinephrine and cortisol. 
-
-#### Acute vs. Chronic Stress:
-- **Acute Stress:** Short-term spikes that sharpen focus, elevate heart rate, and mobilize glucose. It is harmless when followed by adequate recovery.
-- **Chronic Stress:** Occurs when deadlines and task pacing never allow the nervous system to return to baseline. Over time, chronic cortisol elevation suppresses the immune system, impairs prefrontal cortex decision-making, and leads to exhaustion.
-
-#### Physical Indicators of Autonomic Hyper-Arousal:
-- Shallow, rapid thoracic (chest) breathing
-- Involuntary clenching of the jaw, neck, or shoulder muscles
-- Restlessness, difficulty concentrating on complex tasks, and irritability.""",
+                "content_markdown": "### The Neurobiology of Workplace Stress\n\nWhen confronted with sudden high-stakes deadlines, critical messages, or heavy workload, the amygdala signals the hypothalamus to release epinephrine and cortisol. \n\n#### Acute vs. Chronic Stress:\n- **Acute Stress:** Short-term spikes that sharpen focus, elevate heart rate, and mobilize glucose. It is harmless when followed by adequate recovery.\n- **Chronic Stress:** Occurs when deadlines and task pacing never allow the nervous system to return to baseline. Over time, chronic cortisol elevation suppresses the immune system, impairs prefrontal cortex decision-making, and leads to exhaustion.\n\n#### Physical Indicators of Autonomic Hyper-Arousal:\n- Shallow, rapid thoracic (chest) breathing\n- Involuntary clenching of the jaw, neck, or shoulder muscles\n- Restlessness, difficulty concentrating on complex tasks, and irritability.",
                 "key_takeaways": [
                     "Stress is a biological response that requires deliberate physiological down-regulation",
                     "Shallow chest breathing reinforces feelings of anxiety and panic",
@@ -230,22 +185,7 @@ When confronted with sudden high-stakes deadlines, critical messages, or heavy w
                 "title": "Guided Tactical Breathing: Box & 4-7-8 Techniques",
                 "estimated_duration": "15 mins",
                 "summary": "Voluntary respiratory control to stimulate the vagus nerve and immediately activate the parasympathetic nervous system.",
-                "content_markdown": """### Tactical Respiration Protocols
-
-The respiratory system is the only autonomic function under direct conscious control. By altering the cadence and depth of inhalation and exhalation, you directly modulate heart rate variability (HRV) and stimulate the vagus nerve.
-
-#### 1. Box Breathing (4-4-4-4 Cadence):
-- **Inhale** steadily through nose: 4 seconds
-- **Hold** air calmly: 4 seconds
-- **Exhale** smoothly through mouth: 4 seconds
-- **Hold** empty: 4 seconds
-- *Use:* Ideal before entering high-stakes meetings or intense problem-solving.
-
-#### 2. The 4-7-8 Parasympathetic Reset:
-- **Inhale** through nose: 4 seconds
-- **Hold** lungs comfortably full: 7 seconds
-- **Exhale** slowly with a whooshing sound: 8 seconds
-- *Use:* Highly potent for rapid calming after an alarming email or during acute anxiety.""",
+                "content_markdown": "### Tactical Respiration Protocols\n\nThe respiratory system is the only autonomic function under direct conscious control. By altering the cadence and depth of inhalation and exhalation, you directly modulate heart rate variability (HRV) and stimulate the vagus nerve.\n\n#### 1. Box Breathing (4-4-4-4 Cadence):\n- **Inhale** steadily through nose: 4 seconds\n- **Hold** air calmly: 4 seconds\n- **Exhale** smoothly through mouth: 4 seconds\n- **Hold** empty: 4 seconds\n- *Use:* Ideal before entering high-stakes meetings or intense problem-solving.\n\n#### 2. The 4-7-8 Parasympathetic Reset:\n- **Inhale** through nose: 4 seconds\n- **Hold** lungs comfortably full: 7 seconds\n- **Exhale** slowly with a whooshing sound: 8 seconds\n- *Use:* Highly potent for rapid calming after an alarming email or during acute anxiety.",
                 "key_takeaways": [
                     "Exhalations longer than inhalations trigger the parasympathetic brake on heart rate",
                     "Box breathing balances carbon dioxide and oxygen levels for clear cognitive thinking",
@@ -259,14 +199,7 @@ The respiratory system is the only autonomic function under direct conscious con
                 "title": "Time Management, Task Batching & Cognitive Boundaries",
                 "estimated_duration": "20 mins",
                 "summary": "Decoupling from context switching fatigue using structured time blocks, notification audits, and proactive communication.",
-                "content_markdown": """### Defeating Cognitive Overload & Attention Residue
-
-Research shows that recovering from an email or chat interruption takes an average of **23 minutes and 15 seconds**. Continual multi-tasking creates 'attention residue', where part of your mental capacity remains stuck on previous incomplete tasks.
-
-#### Evidence-Based Focus Strategies:
-1. **Time Batching:** Group similar administrative tasks (replying to emails, reviewing tickets) into two dedicated 45-minute daily windows rather than leaving inboxes open all day.
-2. **The 50/10 Work Block:** Work on a single high-priority task for 50 uninterrupted minutes with notifications paused. Take a 10-minute non-screen recovery break.
-3. **Assertive Professional Boundaries:** Replace 'I have to do this right now' with 'Let me check my delivery schedule and confirm a realistic delivery date.'""",
+                "content_markdown": "### Defeating Cognitive Overload & Attention Residue\n\nResearch shows that recovering from an email or chat interruption takes an average of **23 minutes and 15 seconds**. Continual multi-tasking creates 'attention residue', where part of your mental capacity remains stuck on previous incomplete tasks.\n\n#### Evidence-Based Focus Strategies:\n1. **Time Batching:** Group similar administrative tasks (replying to emails, reviewing tickets) into two dedicated 45-minute daily windows rather than leaving inboxes open all day.\n2. **The 50/10 Work Block:** Work on a single high-priority task for 50 uninterrupted minutes with notifications paused. Take a 10-minute non-screen recovery break.\n3. **Assertive Professional Boundaries:** Replace 'I have to do this right now' with 'Let me check my delivery schedule and confirm a realistic delivery date.'",
                 "key_takeaways": [
                     "Frequent context switching degrades IQ and creates chronic task anxiety",
                     "Batch asynchronous communication into scheduled blocks rather than reactive pings",
@@ -280,15 +213,7 @@ Research shows that recovering from an email or chat interruption takes an avera
                 "title": "Healthy Coping Strategies & Mental Recovery Routines",
                 "estimated_duration": "15 mins",
                 "summary": "Establishing structured evening shutdown rituals, cognitive loop closures, and resilient stress recovery habits.",
-                "content_markdown": """### The Workday Shutdown & Cognitive Loop Closure
-
-The Zeigarnik effect dictates that uncompleted tasks remain active in working memory, causing subconscious rumination and insomnia after hours. A deliberate shutdown ritual signals to your brain that the workday is officially terminated.
-
-#### 4-Step Workday Shutdown Routine:
-1. **Review Completed Work:** Acknowledge 3 tasks completed successfully today.
-2. **Plan Tomorrow's Top 3:** Record tomorrow's top 3 non-negotiable priorities so your subconscious mind doesn't have to remember them overnight.
-3. **Close Work Applications:** Shut down IDEs, spreadsheets, and corporate communication tools.
-4. **Verbal / Physical Anchor:** Stand up, stretch, and recite the phrase: *'My workday is finished; my personal recovery begins now.'*""",
+                "content_markdown": "### The Workday Shutdown & Cognitive Loop Closure\n\nThe Zeigarnik effect dictates that uncompleted tasks remain active in working memory, causing subconscious rumination and insomnia after hours. A deliberate shutdown ritual signals to your brain that the workday is officially terminated.\n\n#### 4-Step Workday Shutdown Routine:\n1. **Review Completed Work:** Acknowledge 3 tasks completed successfully today.\n2. **Plan Tomorrow's Top 3:** Record tomorrow's top 3 non-negotiable priorities so your subconscious mind doesn't have to remember them overnight.\n3. **Close Work Applications:** Shut down IDEs, spreadsheets, and corporate communication tools.\n4. **Verbal / Physical Anchor:** Stand up, stretch, and recite the phrase: *'My workday is finished; my personal recovery begins now.'*",
                 "key_takeaways": [
                     "A defined shutdown ritual closes open cognitive loops and protects sleep quality",
                     "Separate work identity from personal wellbeing during evening hours",
@@ -299,53 +224,64 @@ The Zeigarnik effect dictates that uncompleted tasks remain active in working me
             }
         ],
         "quiz": {
-            "title": "Stress Management Knowledge Assessment",
-            "description": "Assess your understanding of autonomic nervous system down-regulation, breathwork techniques, and attention management.",
-            "passing_threshold": 75,
+            "title": "Stress Management Quick Assessment",
+            "description": "5 quick questions on handling workplace stress and daily calm.",
+            "passing_threshold": 60,
             "questions": [
                 {
-                    "question": "Why does making exhalations longer than inhalations (such as in 4-7-8 breathing) calm the body?",
+                    "question": "What is a fast and simple breathing technique to calm sudden stress?",
                     "options": [
-                        "It activates the parasympathetic branch of the vagus nerve, slowing heart rate",
-                        "It increases adrenaline secretion to burn excess stress energy",
-                        "It restricts oxygen to the brain, causing mild drowsiness",
-                        "It forces muscles in the legs to contract"
+                        "Deep, slow belly breathing (like 4-7-8 breathing)",
+                        "Rapid shallow breathing",
+                        "Holding your breath until dizzy",
+                        "Fast hyperventilating"
                     ],
                     "correct_index": 0,
-                    "explanation": "Longer exhalations increase thoracic pressure and stimulate baroreceptors, triggering the vagus nerve to slow cardiac pacing."
+                    "explanation": "Slow diaphragmatic breathing activates your body's relaxation response."
                 },
                 {
-                    "question": "What is 'attention residue' in cognitive productivity science?",
+                    "question": "When you have too many urgent tasks at once, what is the best first step?",
                     "options": [
-                        "A physical dust that accumulates on workstation computer screens",
-                        "Mental capacity that remains stuck on a prior task after switching to a new one",
-                        "The inability to remember client names after lunch",
-                        "The time spent waiting for video conferences to begin"
+                        "Try doing 10 things at the same time",
+                        "Take a breath and prioritize the top 1 or 2 most important items",
+                        "Panic and skip lunch",
+                        "Ignore all communications completely"
                     ],
                     "correct_index": 1,
-                    "explanation": "Attention residue occurs when transitioning between tasks before completion, leaving cognitive bandwidth tied to the unfinished task."
+                    "explanation": "Pausing to prioritize brings focus and lowers overwhelm."
                 },
                 {
-                    "question": "What is the primary psychological purpose of an end-of-day workday shutdown ritual?",
+                    "question": "How does taking a 5-minute mental break during a busy day help?",
                     "options": [
-                        "To prove to HR that you stayed until the exact contract end time",
-                        "To close open cognitive loops and prevent after-hours work rumination",
-                        "To delete all work emails received during the day",
-                        "To organize desktop icons by color"
+                        "It restores mental clarity and reduces stress",
+                        "It completely ruins your workday",
+                        "It causes more fatigue",
+                        "It makes you forget everything you know"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Structured shutdown rituals resolve the Zeigarnik effect by scheduling tomorrow's priorities, allowing the brain to enter rest mode."
+                    "correct_index": 0,
+                    "explanation": "Brief mental breaks reset your nervous system and boost focus."
                 },
                 {
-                    "question": "How does chronic, unmanaged workplace stress impact decision-making in the brain?",
+                    "question": "What is a healthy routine when your workday is finished?",
                     "options": [
-                        "It enhances mathematical intuition and memory recall",
-                        "It shifts neural control toward the amygdala and impairs prefrontal cortex executive functions",
-                        "It has zero impact on cognitive performance",
-                        "It increases long-term neurogenesis in the hippocampus"
+                        "Check work messages every 5 minutes all night",
+                        "Keep worrying about tomorrow while trying to sleep",
+                        "Disconnect from work tools and take time to rest and recharge",
+                        "Work all night without sleeping"
+                    ],
+                    "correct_index": 2,
+                    "explanation": "Clear boundaries between work and personal time prevent burnout."
+                },
+                {
+                    "question": "Which of these is most effective for long-term stress management?",
+                    "options": [
+                        "Drinking 8 cups of strong coffee",
+                        "Regular breaks, good hydration, and adequate sleep",
+                        "Working non-stop without drinking water",
+                        "Bottling up frustration without taking breaks"
                     ],
                     "correct_index": 1,
-                    "explanation": "Chronic cortisol surges atrophy dendrites in the prefrontal cortex, leading to reactive, short-sighted decisions and emotional volatility."
+                    "explanation": "Daily hydration, movement, and sleep build natural stress resilience."
                 }
             ]
         }
@@ -368,7 +304,7 @@ The Zeigarnik effect dictates that uncompleted tasks remain active in working me
         "trainer_role": "Lead Occupational Ergonomist & Sleep Health Specialist",
         "duration": "3 Weeks",
         "target_risk_area": "Recovery",
-        "passing_threshold": 75,
+        "passing_threshold": 60,
         "requires_trainer_verification": True,
         "modules": [
             {
@@ -376,16 +312,7 @@ The Zeigarnik effect dictates that uncompleted tasks remain active in working me
                 "title": "Circadian Sleep Architecture & Physical Repair",
                 "estimated_duration": "15 mins",
                 "summary": "Biological mechanisms of non-REM slow-wave sleep, glymphatic brain detoxification, and circadian hormonal rhythms.",
-                "content_markdown": """### The Architecture of Restorative Sleep
-
-Sleep is an active metabolic state essential for neuro-cognitive consolidation and tissue repair. A normal night's sleep consists of **90-minute ultradian cycles** alternating between Non-REM (Stages 1 through 3) and REM sleep.
-
-#### Critical Sleep Stages for Working Professionals:
-- **Stage 3 Slow-Wave Sleep (Deep Sleep):** The pituitary gland releases human growth hormone (HGH). Cellular repair occurs, micro-tears in muscle tissue heal, and the glymphatic system flushes metabolic waste (including beta-amyloid) from brain tissue.
-- **REM Sleep:** Essential for emotional processing, creative problem solving, and procedural memory consolidation.
-
-#### Circadian Light Anchoring:
-Morning sunlight exposure (within 30 minutes of waking) triggers cortisol release for morning alertness and sets a biological timer for melatonin synthesis 14-16 hours later.""",
+                "content_markdown": "### The Architecture of Restorative Sleep\n\nSleep is an active metabolic state essential for neuro-cognitive consolidation and tissue repair. A normal night's sleep consists of **90-minute ultradian cycles** alternating between Non-REM (Stages 1 through 3) and REM sleep.\n\n#### Critical Sleep Stages for Working Professionals:\n- **Stage 3 Slow-Wave Sleep (Deep Sleep):** The pituitary gland releases human growth hormone (HGH). Cellular repair occurs, micro-tears in muscle tissue heal, and the glymphatic system flushes metabolic waste (including beta-amyloid) from brain tissue.\n- **REM Sleep:** Essential for emotional processing, creative problem solving, and procedural memory consolidation.\n\n#### Circadian Light Anchoring:\nMorning sunlight exposure (within 30 minutes of waking) triggers cortisol release for morning alertness and sets a biological timer for melatonin synthesis 14-16 hours later.",
                 "key_takeaways": [
                     "Adults require 7 to 9 hours of consolidated sleep for complete physiological recovery",
                     "Deep Stage 3 sleep occurs predominantly in the first half of the night",
@@ -399,18 +326,7 @@ Morning sunlight exposure (within 30 minutes of waking) triggers cortisol releas
                 "title": "Recognizing Fatigue & Alertness Dip Windows",
                 "estimated_duration": "15 mins",
                 "summary": "Detecting micro-sleeps, cognitive lapses, reaction time deficits, and navigating the natural post-prandial afternoon dip.",
-                "content_markdown": """### Identifying Occupational Fatigue Signals
-
-Being awake for 17 consecutive hours produces cognitive impairment equivalent to a **blood alcohol concentration (BAC) of 0.05%**. Being awake for 24 hours equates to a BAC of 0.10%, well above legal intoxication limits.
-
-#### Warning Signs of Dangerous Workplace Fatigue:
-- Repeated yawning, heavy eyelids, or rubbing eyes frequently
-- Re-reading the same document or email paragraph multiple times
-- Missing minor details in code, spreadsheets, or client communication
-- Micro-sleeps: brief 1 to 3 second lapses where awareness cuts out completely
-
-#### Navigating the 1:00 PM – 3:00 PM Circadian Dip:
-The human circadian clock has a natural dip in core body temperature and alertness in the early afternoon. Rather than consuming massive doses of caffeine (which disrupts nighttime sleep), combat this dip with movement, hydration, or a 15-minute brisk outdoor walk.""",
+                "content_markdown": "### Identifying Occupational Fatigue Signals\n\nBeing awake for 17 consecutive hours produces cognitive impairment equivalent to a **blood alcohol concentration (BAC) of 0.05%**. Being awake for 24 hours equates to a BAC of 0.10%, well above legal intoxication limits.\n\n#### Warning Signs of Dangerous Workplace Fatigue:\n- Repeated yawning, heavy eyelids, or rubbing eyes frequently\n- Re-reading the same document or email paragraph multiple times\n- Missing minor details in code, spreadsheets, or client communication\n- Micro-sleeps: brief 1 to 3 second lapses where awareness cuts out completely\n\n#### Navigating the 1:00 PM \u2013 3:00 PM Circadian Dip:\nThe human circadian clock has a natural dip in core body temperature and alertness in the early afternoon. Rather than consuming massive doses of caffeine (which disrupts nighttime sleep), combat this dip with movement, hydration, or a 15-minute brisk outdoor walk.",
                 "key_takeaways": [
                     "Sleep deprivation degrades reaction speed, memory retention, and emotional patience",
                     "The post-lunch dip is circadian-driven, not simply caused by heavy meals",
@@ -424,17 +340,7 @@ The human circadian clock has a natural dip in core body temperature and alertne
                 "title": "Healthy Work-Break Schedules: The 50/10 Cadence",
                 "estimated_duration": "15 mins",
                 "summary": "Structuring cognitive pacing with the 50/10 ultradian work cycle to prevent sustained mental and physical exhaustion.",
-                "content_markdown": """### The Science of Ultradian Rhythm Alignment
-
-The human brain can sustain high-frequency beta brainwave focus for approximately **90 minutes** before requiring down-regulation. Ignoring this biological limit forces the adrenal glands to pump adrenaline to keep you awake, leading to mid-afternoon burnout.
-
-#### The 50/10 Workday Cadence:
-- **50 Minutes Deep Focus:** One browser window open, single task execution, notifications silenced.
-- **10 Minutes Active Recovery:** Step completely away from screens. Walk down the hallway, stretch tight hamstrings, perform shoulder rolls, or gaze out a window.
-
-#### True Breaks vs. Fake Breaks:
-- **Fake Break:** Switching from your work laptop screen to scrolling social media or reading news on your smartphone (keeps optical and cognitive systems stressed).
-- **True Break:** Standing up, walking, resting eyes, stretching, or drinking water.""",
+                "content_markdown": "### The Science of Ultradian Rhythm Alignment\n\nThe human brain can sustain high-frequency beta brainwave focus for approximately **90 minutes** before requiring down-regulation. Ignoring this biological limit forces the adrenal glands to pump adrenaline to keep you awake, leading to mid-afternoon burnout.\n\n#### The 50/10 Workday Cadence:\n- **50 Minutes Deep Focus:** One browser window open, single task execution, notifications silenced.\n- **10 Minutes Active Recovery:** Step completely away from screens. Walk down the hallway, stretch tight hamstrings, perform shoulder rolls, or gaze out a window.\n\n#### True Breaks vs. Fake Breaks:\n- **Fake Break:** Switching from your work laptop screen to scrolling social media or reading news on your smartphone (keeps optical and cognitive systems stressed).\n- **True Break:** Standing up, walking, resting eyes, stretching, or drinking water.",
                 "key_takeaways": [
                     "Continuous screen staring leads to cognitive fatigue and digital eye strain",
                     "A 10-minute break away from screens restores attentional capacity for the next sprint",
@@ -447,73 +353,76 @@ The human brain can sustain high-frequency beta brainwave focus for approximatel
                 "module_order": 4,
                 "title": "Sleep Hygiene Protocols & Evening Digital Curfew",
                 "estimated_duration": "20 mins",
-                "summary": "Engineering a clinical sleep environment: 65°F temperature, total darkness, acoustic quiet, and a 45-minute blue light curfew.",
-                "content_markdown": """### Engineering the Optimal Sleep Sanctuary
-
-Sleep hygiene encompasses the environmental and behavioral factors that facilitate rapid sleep onset and uninterrupted slow-wave cycles.
-
-#### The 4 Pillars of a Sleep Sanctuary:
-1. **Darkness:** Blackout blinds or an eye mask. Any ambient light penetrating eyelids suppresses nocturnal melatonin secretion.
-2. **Cool Ambient Temperature:** Core body temperature must drop by 2°F to initiate sleep. Keep bedroom ambient temperature between **65°F and 68°F (18°C to 20°C)**.
-3. **Acoustic Stillness:** Use a white noise machine or earplugs if living in urban environments with intermittent nocturnal sounds.
-4. **45-Minute Digital Curfew:** Blue light from smartphones and monitors suppresses melatonin for up to 90 minutes. Cease all interactive screen use 45 minutes before sleep.""",
+                "summary": "Engineering a clinical sleep environment: 65\u00b0F temperature, total darkness, acoustic quiet, and a 45-minute blue light curfew.",
+                "content_markdown": "### Engineering the Optimal Sleep Sanctuary\n\nSleep hygiene encompasses the environmental and behavioral factors that facilitate rapid sleep onset and uninterrupted slow-wave cycles.\n\n#### The 4 Pillars of a Sleep Sanctuary:\n1. **Darkness:** Blackout blinds or an eye mask. Any ambient light penetrating eyelids suppresses nocturnal melatonin secretion.\n2. **Cool Ambient Temperature:** Core body temperature must drop by 2\u00b0F to initiate sleep. Keep bedroom ambient temperature between **65\u00b0F and 68\u00b0F (18\u00b0C to 20\u00b0C)**.\n3. **Acoustic Stillness:** Use a white noise machine or earplugs if living in urban environments with intermittent nocturnal sounds.\n4. **45-Minute Digital Curfew:** Blue light from smartphones and monitors suppresses melatonin for up to 90 minutes. Cease all interactive screen use 45 minutes before sleep.",
                 "key_takeaways": [
                     "A cool bedroom temperature facilitates the core body cooling needed for deep sleep",
                     "Eliminate all standby LEDs and ambient light from your sleeping quarters",
                     "Institute a 45-minute digital curfew to allow endogenous melatonin release"
                 ],
-                "practical_activity": "Bedroom Audit & Screen Curfew Implementation: Tonight, turn off all screens 45 minutes prior to bed. Read a physical paper book or do gentle stretches in dim warm lighting. Lower room thermostat to 67°F.",
+                "practical_activity": "Bedroom Audit & Screen Curfew Implementation: Tonight, turn off all screens 45 minutes prior to bed. Read a physical paper book or do gentle stretches in dim warm lighting. Lower room thermostat to 67\u00b0F.",
                 "activity_instructions": "Complete your bedroom sleep hygiene audit and record your sleep onset speed."
             }
         ],
         "quiz": {
-            "title": "Fatigue and Sleep Management Knowledge Assessment",
-            "description": "Assess your understanding of sleep architecture, ultradian rhythm alignment, and sleep hygiene practices.",
-            "passing_threshold": 75,
+            "title": "Fatigue & Sleep Quick Assessment",
+            "description": "5 quick questions on sleep hygiene and staying energized at work.",
+            "passing_threshold": 60,
             "questions": [
                 {
-                    "question": "During which phase of sleep does the body perform the majority of physical tissue repair and release growth hormone?",
+                    "question": "How many hours of restful sleep do adults generally need each night?",
                     "options": [
-                        "Stage 1 Light Transitional Sleep",
-                        "Stage 3 Non-REM Slow-Wave Deep Sleep",
-                        "REM Dream Sleep",
-                        "The waking transition period"
+                        "3 to 4 hours",
+                        "7 to 8 hours",
+                        "12 to 14 hours",
+                        "1 to 2 hours"
                     ],
                     "correct_index": 1,
-                    "explanation": "Stage 3 Slow-Wave Sleep is characterized by delta brainwaves, massive release of human growth hormone, and cellular repair."
+                    "explanation": "7-8 hours is the recommended sleep duration for physical and mental recovery."
                 },
                 {
-                    "question": "What is the recommended timing for evening digital screen curfews prior to bedtime?",
+                    "question": "What should you ideally do 30 minutes before bedtime to sleep better?",
                     "options": [
-                        "5 seconds before closing eyes",
-                        "At least 45 to 60 minutes before bedtime",
-                        "Screens should be kept on full brightness while falling asleep",
-                        "Screen curfews have no biological effect on humans"
+                        "Drink heavy energy drinks with caffeine",
+                        "Work on intense spreadsheets with bright screen light",
+                        "Turn off bright screens and relax your mind",
+                        "Stare closely at social media in the dark"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Blue light in the 460-480nm spectrum stimulates melanopsin receptors in the eye, suppressing melatonin synthesis for 45-90 minutes."
+                    "correct_index": 2,
+                    "explanation": "Avoiding blue light allows your body to produce natural melatonin for sleep."
                 },
                 {
-                    "question": "What does being awake for 17 consecutive hours equate to in terms of cognitive impairment?",
+                    "question": "What is the 50/10 work-rest rhythm designed to do?",
                     "options": [
-                        "Superior mental alertness and faster typing speeds",
-                        "A blood alcohol concentration (BAC) equivalent of approximately 0.05%",
-                        "No measurable cognitive deficit",
-                        "A 50% increase in short-term memory capacity"
+                        "Work for 50 minutes, then take a 5-10 minute stretch or posture break",
+                        "Sleep for 50 minutes after working for 10 minutes",
+                        "Work 50 hours non-stop without sleep",
+                        "Drink 50 cups of water in 10 minutes"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Extensive occupational safety studies confirm that 17 hours of continuous wakefulness produces cognitive deficits equal to 0.05% BAC."
+                    "correct_index": 0,
+                    "explanation": "A 50/10 cadence beats fatigue and keeps mental energy steady."
                 },
                 {
-                    "question": "Why is scrolling on a smartphone during a work break considered a 'fake break'?",
+                    "question": "Which of these is a clear sign of workplace fatigue?",
                     "options": [
-                        "Because smartphones are too heavy to hold",
-                        "Because it maintains high optical strain and cognitive task processing without resting neural systems",
-                        "Because phone screens are only designed for evening use",
-                        "Because phones do not have internet connectivity"
+                        "Frequent yawning, heavy eyes, and wandering concentration",
+                        "Feeling boundless energy",
+                        "Sharp laser-like focus for 12 hours",
+                        "Zero desire to sit down or rest"
                     ],
-                    "correct_index": 1,
-                    "explanation": "True recovery requires detaching both the visual system and executive cognitive faculties from digital stimulation."
+                    "correct_index": 0,
+                    "explanation": "Yawning and loss of focus indicate your brain needs a brief recovery break."
+                },
+                {
+                    "question": "What is a healthy way to beat the afternoon energy slump at work?",
+                    "options": [
+                        "Drink a fresh glass of water and take a brief 2-minute walk",
+                        "Eat high-sugar fast food and candy",
+                        "Stay completely motionless at your desk",
+                        "Complain without moving"
+                    ],
+                    "correct_index": 0,
+                    "explanation": "Hydration and light movement increase oxygen flow to the brain."
                 }
             ]
         }
@@ -536,7 +445,7 @@ Sleep hygiene encompasses the environmental and behavioral factors that facilita
         "trainer_role": "Workplace Safety & Ergonomics Compliance Lead",
         "duration": "2 Weeks",
         "target_risk_area": "Safety",
-        "passing_threshold": 75,
+        "passing_threshold": 60,
         "requires_trainer_verification": True,
         "modules": [
             {
@@ -544,15 +453,7 @@ Sleep hygiene encompasses the environmental and behavioral factors that facilita
                 "title": "Workplace Hazard Identification & Risk Assessment",
                 "estimated_duration": "15 mins",
                 "summary": "Systematic categorization of physical, electrical, ergonomic, and chemical hazards in enterprise workplace environments.",
-                "content_markdown": """### Systematic Hazard Recognition
-
-A workplace hazard is any condition or practice with the potential to cause injury, illness, or property damage. Proactive identification prevents catastrophic workplace accidents before they materialize.
-
-#### Primary Hazard Categories in Corporate Settings:
-1. **Physical Hazards:** Trailing electrical cables across walkways, obstructed fire exits, unstable stacked storage boxes, and slippery floor surfaces.
-2. **Electrical Hazards:** Overloaded power strips ('daisy chaining'), frayed power cords, damaged equipment plugs, and blocked electrical distribution panels.
-3. **Ergonomic Hazards:** Awkward lifting postures, repetitive manual tasks without rotation, and uncalibrated workstations.
-4. **Chemical / Biological Hazards:** Improperly labeled cleaning solvents, mold in ventilation systems, or unhygienic shared kitchen areas.""",
+                "content_markdown": "### Systematic Hazard Recognition\n\nA workplace hazard is any condition or practice with the potential to cause injury, illness, or property damage. Proactive identification prevents catastrophic workplace accidents before they materialize.\n\n#### Primary Hazard Categories in Corporate Settings:\n1. **Physical Hazards:** Trailing electrical cables across walkways, obstructed fire exits, unstable stacked storage boxes, and slippery floor surfaces.\n2. **Electrical Hazards:** Overloaded power strips ('daisy chaining'), frayed power cords, damaged equipment plugs, and blocked electrical distribution panels.\n3. **Ergonomic Hazards:** Awkward lifting postures, repetitive manual tasks without rotation, and uncalibrated workstations.\n4. **Chemical / Biological Hazards:** Improperly labeled cleaning solvents, mold in ventilation systems, or unhygienic shared kitchen areas.",
                 "key_takeaways": [
                     "Hazard mitigation is the collective responsibility of all team members",
                     "Never ignore an identified hazard; report or resolve it immediately",
@@ -566,15 +467,7 @@ A workplace hazard is any condition or practice with the potential to cause inju
                 "title": "Emergency Evacuation & First-Response Procedures",
                 "estimated_duration": "15 mins",
                 "summary": "Evacuation alarm protocols, secondary exit routes, designated assembly zones, and first aid response actions.",
-                "content_markdown": """### Emergency Action Plans & Evacuation Protocols
-
-During a fire, chemical release, or structural emergency, seconds count. Panic is prevented through prior familiarity with primary and secondary evacuation corridors.
-
-#### Core Evacuation Rules:
-1. **Recognize the Alarm:** Upon hearing the evacuation siren or announcement, immediately cease all work. Do not return to your desk to collect personal belongings.
-2. **Never Use Elevators:** Elevators can lose power or act as natural chimneys for smoke and toxic gases. Always use marked fire stairwells.
-3. **Check Doors for Heat:** Feel closed doors with the back of your hand before opening. If hot, seek your designated secondary escape route.
-4. **Proceed to Assembly Point:** Gather at your department's designated outdoor assembly point and report to your Floor Safety Warden for headcounts.""",
+                "content_markdown": "### Emergency Action Plans & Evacuation Protocols\n\nDuring a fire, chemical release, or structural emergency, seconds count. Panic is prevented through prior familiarity with primary and secondary evacuation corridors.\n\n#### Core Evacuation Rules:\n1. **Recognize the Alarm:** Upon hearing the evacuation siren or announcement, immediately cease all work. Do not return to your desk to collect personal belongings.\n2. **Never Use Elevators:** Elevators can lose power or act as natural chimneys for smoke and toxic gases. Always use marked fire stairwells.\n3. **Check Doors for Heat:** Feel closed doors with the back of your hand before opening. If hot, seek your designated secondary escape route.\n4. **Proceed to Assembly Point:** Gather at your department's designated outdoor assembly point and report to your Floor Safety Warden for headcounts.",
                 "key_takeaways": [
                     "Always know at least two unobstructed emergency exit routes from your desk",
                     "Never use elevators during fire alarms or seismic emergencies",
@@ -588,14 +481,7 @@ During a fire, chemical release, or structural emergency, seconds count. Panic i
                 "title": "Safe Working Practices: Slips, Trips & Electrical Care",
                 "estimated_duration": "15 mins",
                 "summary": "Mitigating the leading cause of lost-time workplace injuries: slips, trips, and electrical power strip misuse.",
-                "content_markdown": """### Preventing Slips, Trips & Falls
-
-Slips, trips, and falls constitute over **25% of all annual workplace injury claims** in corporate offices. Most are completely preventable through disciplined housekeeping.
-
-#### Rules for Walking Surface Safety:
-- **Clean Spills Immediately:** If you spill coffee, tea, or water in a pantry or hallway, clean it up immediately or deploy a 'Wet Floor' caution sign while notifying facilities.
-- **Tuck In Desk Chairs:** When leaving your desk, push your chair completely beneath the desk to maintain clear corridor clearance.
-- **Never Daisy-Chain Extension Cords:** Plug power strips directly into wall outlets. Connecting one power strip into another creates fire risk through resistance overheating.""",
+                "content_markdown": "### Preventing Slips, Trips & Falls\n\nSlips, trips, and falls constitute over **25% of all annual workplace injury claims** in corporate offices. Most are completely preventable through disciplined housekeeping.\n\n#### Rules for Walking Surface Safety:\n- **Clean Spills Immediately:** If you spill coffee, tea, or water in a pantry or hallway, clean it up immediately or deploy a 'Wet Floor' caution sign while notifying facilities.\n- **Tuck In Desk Chairs:** When leaving your desk, push your chair completely beneath the desk to maintain clear corridor clearance.\n- **Never Daisy-Chain Extension Cords:** Plug power strips directly into wall outlets. Connecting one power strip into another creates fire risk through resistance overheating.",
                 "key_takeaways": [
                     "Report or clean liquid spills on hard tile floors immediately",
                     "Do not daisy-chain power strips or overload individual electrical sockets",
@@ -609,19 +495,7 @@ Slips, trips, and falls constitute over **25% of all annual workplace injury cla
                 "title": "Incident Reporting & Safety Audits",
                 "estimated_duration": "15 mins",
                 "summary": "Filing near-miss reports, documenting hazardous occurrences, and cooperating with regulatory safety investigations.",
-                "content_markdown": """### The Power of Near-Miss Reporting
-
-In occupational safety, the **Heinrich Triangle** demonstrates that for every major injury, there are 29 minor injuries and **300 near-miss incidents**. A near-miss is an unplanned event that did not result in injury or damage, but had the potential to do so.
-
-#### Why Report Near-Misses?
-Reporting a loose stair tread or flickering halogen fixture enables facilities teams to rectify the danger before a colleague falls and sustains an injury.
-
-#### The 5-Step Incident Reporting Process:
-1. **Ensure Immediate Safety:** Render first aid or isolate the hazard if safe to do so.
-2. **Notify Safety Lead / HR:** Alert your manager and designated safety officer within 24 hours.
-3. **Document Objective Facts:** Record date, exact location, equipment involved, and witness names without assigning blame.
-4. **Participate in Root Cause Analysis:** Help determine systemic reasons for the hazard.
-5. **Implement Corrective Action:** Verify that preventive measures are put in place.""",
+                "content_markdown": "### The Power of Near-Miss Reporting\n\nIn occupational safety, the **Heinrich Triangle** demonstrates that for every major injury, there are 29 minor injuries and **300 near-miss incidents**. A near-miss is an unplanned event that did not result in injury or damage, but had the potential to do so.\n\n#### Why Report Near-Misses?\nReporting a loose stair tread or flickering halogen fixture enables facilities teams to rectify the danger before a colleague falls and sustains an injury.\n\n#### The 5-Step Incident Reporting Process:\n1. **Ensure Immediate Safety:** Render first aid or isolate the hazard if safe to do so.\n2. **Notify Safety Lead / HR:** Alert your manager and designated safety officer within 24 hours.\n3. **Document Objective Facts:** Record date, exact location, equipment involved, and witness names without assigning blame.\n4. **Participate in Root Cause Analysis:** Help determine systemic reasons for the hazard.\n5. **Implement Corrective Action:** Verify that preventive measures are put in place.",
                 "key_takeaways": [
                     "Near-miss reports prevent future severe workplace injuries",
                     "Report all incidents within 24 hours regardless of whether injury occurred",
@@ -632,53 +506,64 @@ Reporting a loose stair tread or flickering halogen fixture enables facilities t
             }
         ],
         "quiz": {
-            "title": "Workplace Safety Essentials Knowledge Assessment",
-            "description": "Assess your understanding of hazard classification, emergency evacuation protocols, and incident reporting.",
-            "passing_threshold": 75,
+            "title": "Workplace Safety Quick Assessment",
+            "description": "5 quick questions on identifying hazards and staying safe at work.",
+            "passing_threshold": 60,
             "questions": [
                 {
-                    "question": "What is the very first action you must take when an emergency evacuation alarm sounds?",
+                    "question": "What should you do if you notice a liquid spill on an office walkway?",
                     "options": [
-                        "Finish your current email and save your open spreadsheet",
-                        "Cease work immediately, leave personal belongings, and proceed toward the nearest exit stairwell",
-                        "Take the nearest elevator down to the ground floor",
-                        "Wait for 10 minutes to see if it is a false alarm"
+                        "Step over it and ignore it",
+                        "Clean or report it immediately to prevent slips and falls",
+                        "Wait for someone else to slip",
+                        "Cover it with a loose sheet of paper"
                     ],
                     "correct_index": 1,
-                    "explanation": "Immediate evacuation without retrieving personal belongings saves lives and avoids stairwell congestion."
+                    "explanation": "Promptly addressing spills prevents painful slips and workplace injuries."
                 },
                 {
-                    "question": "Why is 'daisy-chaining' (plugging one power strip into another) prohibited in corporate safety policies?",
+                    "question": "How should emergency exit doors and corridors always be kept?",
                     "options": [
-                        "It slows down computer processor clock speeds",
-                        "It can overload the circuit and create severe electrical fire hazards through resistive heating",
-                        "It looks messy to office visitors",
-                        "It consumes double the internet bandwidth"
+                        "Blocked with surplus office boxes",
+                        "Locked with heavy padlock chains",
+                        "Completely clear, unlocked, and unobstructed",
+                        "Hidden behind decorative curtains"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Daisy-chaining exceeds the rated ampacity of electrical cables, causing insulation melting and electrical fires."
+                    "correct_index": 2,
+                    "explanation": "Exit routes must always remain clear for safe emergency evacuations."
                 },
                 {
-                    "question": "What is a 'near-miss' in workplace occupational health and safety?",
+                    "question": "What should you do if you spot a damaged, frayed electrical wire?",
                     "options": [
-                        "An employee arriving 2 minutes late for work",
-                        "An unplanned event that had the potential to cause injury or damage but did not",
-                        "A missed telephone call from a client",
-                        "Failing an ergonomic quiz attempt"
+                        "Do not touch it; report it immediately to facilities or safety staff",
+                        "Wrap it with regular scotch tape and keep using it",
+                        "Pour water near it",
+                        "Ignore it until a spark happens"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Near-misses are critical leading indicators that highlight safety hazards before a tragic injury occurs."
+                    "correct_index": 0,
+                    "explanation": "Damaged cords present an electrical hazard and must be fixed by professionals."
                 },
                 {
-                    "question": "Why must elevators NEVER be used during a building fire evacuation?",
+                    "question": "During a building fire alarm evacuation, what should you always use?",
                     "options": [
-                        "Elevators are reserved exclusively for building management",
-                        "Elevators can lose power, trap occupants, or channel lethal smoke and flames into the shaft",
-                        "Elevators move too slowly compared to walking",
-                        "Elevator doors automatically lock after 5:00 PM"
+                        "The building elevators",
+                        "The emergency exit stairs",
+                        "Hide under the nearest desk",
+                        "Climb onto the roof"
                     ],
                     "correct_index": 1,
-                    "explanation": "Elevator shafts act as natural chimneys for smoke and heat, and power failures frequently trap occupants between burning floors."
+                    "explanation": "Elevators can lose power in a fire; always use stairwells."
+                },
+                {
+                    "question": "Why is reporting 'near-miss' incidents important in a workplace?",
+                    "options": [
+                        "It helps fix hidden hazards before an actual injury occurs",
+                        "To assign blame to employees",
+                        "To generate unnecessary paperwork",
+                        "To cancel all work projects"
+                    ],
+                    "correct_index": 0,
+                    "explanation": "Near-miss reporting helps create a proactive, injury-free workplace."
                 }
             ]
         }
@@ -701,7 +586,7 @@ Reporting a loose stair tread or flickering halogen fixture enables facilities t
         "trainer_role": "Occupational Physical Therapist & Lifestyle Coach",
         "duration": "3 Weeks",
         "target_risk_area": "Lifestyle",
-        "passing_threshold": 75,
+        "passing_threshold": 60,
         "requires_trainer_verification": True,
         "modules": [
             {
@@ -709,15 +594,7 @@ Reporting a loose stair tread or flickering halogen fixture enables facilities t
                 "title": "Workday Nutrition: Balanced Energy & Glycemic Stability",
                 "estimated_duration": "15 mins",
                 "summary": "Preventing afternoon cognitive brain fog through balanced macronutrient ratios, complex carbohydrates, and fiber.",
-                "content_markdown": """### Fueling Cognitive Performance
-
-The human brain consumes **20% of the body's daily caloric energy**, running almost exclusively on glucose. However, high-glycemic meals (refined carbs, sugary pastries, white bread) trigger rapid blood sugar spikes followed by steep insulin-driven crashes, creating severe 2:00 PM mental lethargy.
-
-#### The Steady-Energy Plate Framework:
-1. **Half Plate Fiber:** Leafy greens, cruciferous vegetables, or raw salad to slow glucose absorption.
-2. **Quarter Plate Clean Protein:** Tofu, lentils, eggs, chicken, or fish to trigger satiety hormones (peptide YY and leptin).
-3. **Quarter Plate Complex Carbohydrates:** Brown rice, quinoa, sweet potatoes, or whole oats for steady, gradual glucose release.
-4. **Healthy Fats:** Olive oil, avocados, or raw walnuts for sustained cellular energy.""",
+                "content_markdown": "### Fueling Cognitive Performance\n\nThe human brain consumes **20% of the body's daily caloric energy**, running almost exclusively on glucose. However, high-glycemic meals (refined carbs, sugary pastries, white bread) trigger rapid blood sugar spikes followed by steep insulin-driven crashes, creating severe 2:00 PM mental lethargy.\n\n#### The Steady-Energy Plate Framework:\n1. **Half Plate Fiber:** Leafy greens, cruciferous vegetables, or raw salad to slow glucose absorption.\n2. **Quarter Plate Clean Protein:** Tofu, lentils, eggs, chicken, or fish to trigger satiety hormones (peptide YY and leptin).\n3. **Quarter Plate Complex Carbohydrates:** Brown rice, quinoa, sweet potatoes, or whole oats for steady, gradual glucose release.\n4. **Healthy Fats:** Olive oil, avocados, or raw walnuts for sustained cellular energy.",
                 "key_takeaways": [
                     "High-glycemic meals cause rapid insulin spikes followed by afternoon cognitive brain fog",
                     "Incorporate protein and healthy fats into every lunch to sustain mental stamina",
@@ -731,14 +608,7 @@ The human brain consumes **20% of the body's daily caloric energy**, running alm
                 "title": "Hydration Protocols & Cognitive Stamina",
                 "estimated_duration": "15 mins",
                 "summary": "Impact of mild 1-2% dehydration on working memory, executive function, tension headaches, and alertness.",
-                "content_markdown": """### The Critical Role of Cellular Hydration
-
-Even mild dehydration—losing just **1% to 2% of body weight in water**—measurably impairs working memory, motor coordination, and mood, while significantly increasing reports of afternoon headaches.
-
-#### Daily Hydration Guidelines:
-- **Baseline Intake:** Aim for **2.0 to 2.5 liters (approx. 8 to 10 glasses)** of pure water per workday.
-- **The Desk Water Bottle Rule:** Keep a 750ml or 1-liter reusable water bottle directly beside your keyboard. Visual proximity dramatically increases passive sipping.
-- **The Caffeine Offset Rule:** For every cup of coffee or strong black tea consumed, drink an additional glass of water to offset its mild diuretic properties.""",
+                "content_markdown": "### The Critical Role of Cellular Hydration\n\nEven mild dehydration\u2014losing just **1% to 2% of body weight in water**\u2014measurably impairs working memory, motor coordination, and mood, while significantly increasing reports of afternoon headaches.\n\n#### Daily Hydration Guidelines:\n- **Baseline Intake:** Aim for **2.0 to 2.5 liters (approx. 8 to 10 glasses)** of pure water per workday.\n- **The Desk Water Bottle Rule:** Keep a 750ml or 1-liter reusable water bottle directly beside your keyboard. Visual proximity dramatically increases passive sipping.\n- **The Caffeine Offset Rule:** For every cup of coffee or strong black tea consumed, drink an additional glass of water to offset its mild diuretic properties.",
                 "key_takeaways": [
                     "A 1-2% drop in hydration measurably degrades cognitive processing speed",
                     "Thirst is a delayed indicator; drink water proactively throughout the morning",
@@ -752,15 +622,7 @@ Even mild dehydration—losing just **1% to 2% of body weight in water**—measu
                 "title": "Physical Activity at Work: Movement & 5,000 Steps",
                 "estimated_duration": "20 mins",
                 "summary": "Achieving workday movement volume, stair climbing, desk-side mobility drills, and active meetings.",
-                "content_markdown": """### Counteracting Sedentary Work Hours
-
-Sitting for 8 hours cannot be fully undone by a 30-minute evening gym session. Continuous muscular inactivity turns off lipoprotein lipase (LPL), an enzyme that clears fats from the bloodstream.
-
-#### Practical Workday Movement Injections:
-1. **The 2-Flight Stair Rule:** Take the stairs instead of the elevator whenever traveling 2 floors up or 3 floors down.
-2. **Walking Phone Calls:** Stand up and pace slowly around an empty conference room or corridor during voice-only calls.
-3. **Midday Brisk Walk:** Dedicate 15 minutes of your lunch break to an outdoor walk. Natural sunlight combined with foot strikes stimulates dopamine and autonomic re-centering.
-4. **Target Volume:** Aim for **5,000+ steps** accumulated before your workday concludes.""",
+                "content_markdown": "### Counteracting Sedentary Work Hours\n\nSitting for 8 hours cannot be fully undone by a 30-minute evening gym session. Continuous muscular inactivity turns off lipoprotein lipase (LPL), an enzyme that clears fats from the bloodstream.\n\n#### Practical Workday Movement Injections:\n1. **The 2-Flight Stair Rule:** Take the stairs instead of the elevator whenever traveling 2 floors up or 3 floors down.\n2. **Walking Phone Calls:** Stand up and pace slowly around an empty conference room or corridor during voice-only calls.\n3. **Midday Brisk Walk:** Dedicate 15 minutes of your lunch break to an outdoor walk. Natural sunlight combined with foot strikes stimulates dopamine and autonomic re-centering.\n4. **Target Volume:** Aim for **5,000+ steps** accumulated before your workday concludes.",
                 "key_takeaways": [
                     "Frequent movement bursts throughout the day are superior to one isolated evening workout",
                     "Take the stairs for short vertical trips to activate large quadricep and gluteal muscles",
@@ -774,18 +636,7 @@ Sitting for 8 hours cannot be fully undone by a 30-minute evening gym session. C
                 "title": "Building Sustainable Workplace Health Habits",
                 "estimated_duration": "15 mins",
                 "summary": "Applying James Clear's habit stacking principles to attach healthy actions to existing workday cues.",
-                "content_markdown": """### The Behavioral Science of Habit Stacking
-
-Willpower is a finite cognitive resource that depletes as the workday progresses. Sustainable occupational health relies not on motivation, but on **Habit Stacking**: linking an intended new healthy behavior to an existing automatic cue.
-
-#### Habit Stacking Formula:
-*After / Before [CURRENT WORK HABIT], I will [NEW HEALTHY ACTION].*
-
-#### High-Impact Workplace Examples:
-- *After I pour my morning coffee, I will drink a full 250ml glass of water.*
-- *Before I click 'Join Meeting', I will perform 3 deep diaphragmatic breaths.*
-- *After I finish a client call, I will stand up and do 10 calf raises.*
-- *When my computer locks for lunch, I will do 5 shoulder rolls.*""",
+                "content_markdown": "### The Behavioral Science of Habit Stacking\n\nWillpower is a finite cognitive resource that depletes as the workday progresses. Sustainable occupational health relies not on motivation, but on **Habit Stacking**: linking an intended new healthy behavior to an existing automatic cue.\n\n#### Habit Stacking Formula:\n*After / Before [CURRENT WORK HABIT], I will [NEW HEALTHY ACTION].*\n\n#### High-Impact Workplace Examples:\n- *After I pour my morning coffee, I will drink a full 250ml glass of water.*\n- *Before I click 'Join Meeting', I will perform 3 deep diaphragmatic breaths.*\n- *After I finish a client call, I will stand up and do 10 calf raises.*\n- *When my computer locks for lunch, I will do 5 shoulder rolls.*",
                 "key_takeaways": [
                     "Relying on motivation fails when work stress peaks; rely on habit architecture",
                     "Attach new health behaviors to firmly established daily routines",
@@ -796,53 +647,64 @@ Willpower is a finite cognitive resource that depletes as the workday progresses
             }
         ],
         "quiz": {
-            "title": "Healthy Lifestyle at Work Knowledge Assessment",
-            "description": "Assess your understanding of workday nutrition, hydration benchmarks, and behavioral habit stacking.",
-            "passing_threshold": 75,
+            "title": "Healthy Lifestyle Quick Assessment",
+            "description": "5 quick questions on desk nutrition, hydration, and movement habits.",
+            "passing_threshold": 60,
             "questions": [
                 {
-                    "question": "What is the primary cause of the severe 2:00 PM 'food coma' after eating refined, high-sugar lunches?",
+                    "question": "What is a good daily hydration target during office hours?",
                     "options": [
-                        "An allergy to office air conditioning",
-                        "A rapid blood glucose spike followed by an acute insulin-driven crash",
-                        "Normal digestive enzymes shutting down brain function permanently",
-                        "Too much dietary fiber in the stomach"
+                        "Only one small sip of water all day",
+                        "Around 2 to 3 liters of water spread across the day",
+                        "Zero water; only sugary soda",
+                        "10 liters in one single gulp"
                     ],
                     "correct_index": 1,
-                    "explanation": "Refined carbohydrates cause rapid hyperglycemia followed by reactive hypoglycemia, leaving the brain deprived of steady glucose."
+                    "explanation": "Consistent water intake throughout the day prevents dehydration and headaches."
                 },
                 {
-                    "question": "What is the recommended daily baseline water intake for an adult working at a desk?",
+                    "question": "Which of these is a nutritious snack to keep at your desk?",
                     "options": [
-                        "200 milliliters (less than one cup)",
-                        "2.0 to 2.5 liters (approx. 8 to 10 glasses)",
-                        "10 liters per day",
-                        "Water should only be consumed if you have a fever"
+                        "Fresh fruit, almonds, or walnuts",
+                        "Sugary candy bars and deep-fried chips every hour",
+                        "Only pure sugar packets",
+                        "Skipping food completely"
                     ],
-                    "correct_index": 1,
-                    "explanation": "2.0 to 2.5 liters provides adequate cellular hydration, supports kidney filtration, and prevents mild cognitive fatigue."
+                    "correct_index": 0,
+                    "explanation": "Fruits and nuts provide steady energy without blood sugar crashes."
                 },
                 {
-                    "question": "In behavioral psychology, what is 'habit stacking'?",
+                    "question": "Why is standing up or stretching during the workday helpful?",
                     "options": [
-                        "Stacking multiple heavy books on top of your keyboard",
-                        "Pairing a new desired healthy habit directly after an established daily routine",
-                        "Attempting to change 20 lifestyle habits simultaneously on Monday morning",
-                        "Working without sleep for three consecutive days"
+                        "It boosts circulation and reduces muscle stiffness",
+                        "It makes you fall asleep immediately",
+                        "It destroys all your work productivity",
+                        "It has no benefit whatsoever"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Habit stacking uses the established neural pathway of an existing habit as a trigger for a new, desired behavior."
+                    "correct_index": 0,
+                    "explanation": "Light movement promotes circulation and relieves spinal compression."
                 },
                 {
-                    "question": "Why is an evening 30-minute gym session insufficient to counteract 8 hours of uninterrupted static sitting?",
+                    "question": "What is an easy way to increase your daily steps during work?",
                     "options": [
-                        "Because gym equipment does not work in the evening",
-                        "Because prolonged uninterrupted sitting shuts down metabolic enzymes like LPL regardless of exercise",
-                        "Because human muscles only respond to morning workouts",
-                        "Gym sessions are completely sufficient and no movement during the day is needed"
+                        "Take the stairs instead of the elevator for 1-2 floors",
+                        "Stay glued to your chair all day",
+                        "Never walk anywhere",
+                        "Ride an office chair down the hall"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Lipoprotein lipase (LPL) activity drops significantly during uninterrupted sitting, requiring intermittent movement throughout the day."
+                    "correct_index": 0,
+                    "explanation": "Using stairs and taking short walking breaks adds up to thousands of healthy steps."
+                },
+                {
+                    "question": "How does balanced nutrition help your work performance?",
+                    "options": [
+                        "Provides smooth, sustained energy and clear thinking",
+                        "Causes severe brain fog",
+                        "Makes you unable to work",
+                        "Eliminates the need for any sleep"
+                    ],
+                    "correct_index": 0,
+                    "explanation": "Nutrient-rich foods prevent afternoon fatigue and sustain mental clarity."
                 }
             ]
         }
@@ -865,7 +727,7 @@ Willpower is a finite cognitive resource that depletes as the workday progresses
         "trainer_role": "Lead Occupational Ergonomist & Visual Health Specialist",
         "duration": "2 Weeks",
         "target_risk_area": "Vision",
-        "passing_threshold": 75,
+        "passing_threshold": 60,
         "requires_trainer_verification": True,
         "modules": [
             {
@@ -873,14 +735,7 @@ Willpower is a finite cognitive resource that depletes as the workday progresses
                 "title": "Screen Distance & Display Placement",
                 "estimated_duration": "15 mins",
                 "summary": "Biomechanical optical focus, convergence accommodation, and optimal monitor distance.",
-                "content_markdown": """### The Physics of Digital Eye Accommodation
-
-When viewing near objects like computer monitors, the ciliary muscles inside your eyes must contract constantly to bend the lens and focus incoming light onto the fovea centralis. When viewing screens for hours, these tiny muscles enter tonic spasms, leading to blurred distance vision and headaches.
-
-#### Optimal Display Geometry:
-1. **Screen Distance:** Position the monitor at **20 to 28 inches (50 to 70 cm)** from your eyes—approximately arm's length. Placing screens too close increases convergence fatigue.
-2. **Downward Gaze Angle:** The center of the screen should sit **15 to 20 degrees below eye level**. When your eyes look slightly downward, your eyelids cover more of the ocular surface, reducing tear evaporation by up to **30%**.
-3. **Text Scaling:** Increase system text size to at least 125% if you find yourself squinting or leaning forward to read code or spreadsheets.""",
+                "content_markdown": "### The Physics of Digital Eye Accommodation\n\nWhen viewing near objects like computer monitors, the ciliary muscles inside your eyes must contract constantly to bend the lens and focus incoming light onto the fovea centralis. When viewing screens for hours, these tiny muscles enter tonic spasms, leading to blurred distance vision and headaches.\n\n#### Optimal Display Geometry:\n1. **Screen Distance:** Position the monitor at **20 to 28 inches (50 to 70 cm)** from your eyes\u2014approximately arm's length. Placing screens too close increases convergence fatigue.\n2. **Downward Gaze Angle:** The center of the screen should sit **15 to 20 degrees below eye level**. When your eyes look slightly downward, your eyelids cover more of the ocular surface, reducing tear evaporation by up to **30%**.\n3. **Text Scaling:** Increase system text size to at least 125% if you find yourself squinting or leaning forward to read code or spreadsheets.",
                 "key_takeaways": [
                     "Position screens 20 to 28 inches away from your face (arm's length)",
                     "A slightly downward gaze reduces tear film evaporation and prevents dry eyes",
@@ -894,15 +749,7 @@ When viewing near objects like computer monitors, the ciliary muscles inside you
                 "title": "Eye Strain Prevention: The 20-20-20 Rule",
                 "estimated_duration": "15 mins",
                 "summary": "Clinical implementation of the 20-20-20 cadence to release ciliary muscle spasms and restore tear film lubrication.",
-                "content_markdown": """### Releasing Ciliary Muscle Spasms with 20-20-20
-
-When looking at digital screens, the average human blink rate drops from **18-20 blinks per minute down to only 6-8 blinks per minute**. This 60% reduction in blinking leaves the cornea exposed to air, evaporating the tear film and causing burning, gritty sensations and red eyes.
-
-#### The Clinical 20-20-20 Cadence:
-- **Every 20 Minutes:** Pause your active screen work.
-- **Look at an Object at Least 20 Feet Away:** Look out a window, down an office hallway, or across the room.
-- **For at Least 20 Seconds:** At 20 feet (optical infinity), the ciliary muscles inside your eyes fully relax, releasing mechanical tension.
-- **Perform 5 Complete Blinks:** Consciously close your eyelids completely to re-spread the lipid layer of your tear film over the cornea.""",
+                "content_markdown": "### Releasing Ciliary Muscle Spasms with 20-20-20\n\nWhen looking at digital screens, the average human blink rate drops from **18-20 blinks per minute down to only 6-8 blinks per minute**. This 60% reduction in blinking leaves the cornea exposed to air, evaporating the tear film and causing burning, gritty sensations and red eyes.\n\n#### The Clinical 20-20-20 Cadence:\n- **Every 20 Minutes:** Pause your active screen work.\n- **Look at an Object at Least 20 Feet Away:** Look out a window, down an office hallway, or across the room.\n- **For at Least 20 Seconds:** At 20 feet (optical infinity), the ciliary muscles inside your eyes fully relax, releasing mechanical tension.\n- **Perform 5 Complete Blinks:** Consciously close your eyelids completely to re-spread the lipid layer of your tear film over the cornea.",
                 "key_takeaways": [
                     "Blink rate drops by over 60% during focused computer work",
                     "Every 20 minutes, gaze at an object 20+ feet away for 20 seconds",
@@ -916,18 +763,7 @@ When looking at digital screens, the average human blink rate drops from **18-20
                 "title": "Visual Rest Breaks & Optic Nerve Relaxation",
                 "estimated_duration": "15 mins",
                 "summary": "Palming techniques, panoramic peripheral awareness, and releasing ocular motor strain.",
-                "content_markdown": """### Soothing the Optic Nerve: Palming & Panoramic Vision
-
-Staring at high-density pixels forces focal vision into a narrow 'tunnel vision' mode that activates the sympathetic nervous system. Expanding your peripheral awareness instantly down-regulates autonomic arousal.
-
-#### 1. The Palming Technique:
-1. Rub your hands together briskly for 10 seconds until your palms feel warm.
-2. Cup your warm palms softly over your closed eyes without pressing against the eyeballs.
-3. Rest your elbows on your desk and breathe slowly for 60 to 90 seconds in complete darkness.
-4. The warmth and total absence of light allows photoreceptors to regenerate rhodopsin.
-
-#### 2. Panoramic Vision Shift:
-Soften your gaze and become aware of objects to your extreme left and right without moving your eyes. This shifts brainwave activity from high-frequency stress states to calm alpha rhythms.""",
+                "content_markdown": "### Soothing the Optic Nerve: Palming & Panoramic Vision\n\nStaring at high-density pixels forces focal vision into a narrow 'tunnel vision' mode that activates the sympathetic nervous system. Expanding your peripheral awareness instantly down-regulates autonomic arousal.\n\n#### 1. The Palming Technique:\n1. Rub your hands together briskly for 10 seconds until your palms feel warm.\n2. Cup your warm palms softly over your closed eyes without pressing against the eyeballs.\n3. Rest your elbows on your desk and breathe slowly for 60 to 90 seconds in complete darkness.\n4. The warmth and total absence of light allows photoreceptors to regenerate rhodopsin.\n\n#### 2. Panoramic Vision Shift:\nSoften your gaze and become aware of objects to your extreme left and right without moving your eyes. This shifts brainwave activity from high-frequency stress states to calm alpha rhythms.",
                 "key_takeaways": [
                     "Palming provides total darkness and gentle warmth to relax strained eye muscles",
                     "Shifting from tunnel focus to panoramic vision reduces sympathetic stress",
@@ -941,14 +777,7 @@ Soften your gaze and become aware of objects to your extreme left and right with
                 "title": "Screen Lighting, Glare & Display Calibration",
                 "estimated_duration": "15 mins",
                 "summary": "Balancing ambient lux levels, eliminating specular reflections, and calibrating color temperature.",
-                "content_markdown": """### Lighting Contrast & Display Calibration
-
-Working in a dark room with a glowing white monitor—or sitting with an unshaded window directly behind your screen—forces your pupils into constant constriction and dilation, causing severe ocular muscle fatigue.
-
-#### Principles of Visual Ergonomics:
-1. **Luminance Matching:** Your monitor brightness should match the ambient brightness of the surrounding room. Hold a white sheet of paper next to your monitor: if the monitor glows brighter than the paper, it is too bright. If it looks dull grey, increase brightness.
-2. **Glare Elimination:** Position screens perpendicular to windows rather than directly facing or backing windows. Use matte screen filters if overhead troffers reflect off the glass.
-3. **Warm Color Temperature:** Blue light waves scatter easily in the eye, creating chromatic aberration. Enable Night Light / TrueTone on your OS to shift color temperature to warm (3400K-4000K) during late hours.""",
+                "content_markdown": "### Lighting Contrast & Display Calibration\n\nWorking in a dark room with a glowing white monitor\u2014or sitting with an unshaded window directly behind your screen\u2014forces your pupils into constant constriction and dilation, causing severe ocular muscle fatigue.\n\n#### Principles of Visual Ergonomics:\n1. **Luminance Matching:** Your monitor brightness should match the ambient brightness of the surrounding room. Hold a white sheet of paper next to your monitor: if the monitor glows brighter than the paper, it is too bright. If it looks dull grey, increase brightness.\n2. **Glare Elimination:** Position screens perpendicular to windows rather than directly facing or backing windows. Use matte screen filters if overhead troffers reflect off the glass.\n3. **Warm Color Temperature:** Blue light waves scatter easily in the eye, creating chromatic aberration. Enable Night Light / TrueTone on your OS to shift color temperature to warm (3400K-4000K) during late hours.",
                 "key_takeaways": [
                     "Match screen brightness to surrounding ambient room lighting",
                     "Position screens perpendicular to windows to eliminate direct glare",
@@ -959,53 +788,64 @@ Working in a dark room with a glowing white monitor—or sitting with an unshade
             }
         ],
         "quiz": {
-            "title": "Digital Eye Care Knowledge Assessment",
-            "description": "Assess your understanding of the 20-20-20 rule, optical accommodation, and display glare management.",
-            "passing_threshold": 75,
+            "title": "Digital Eye Care Quick Assessment",
+            "description": "5 quick questions on protecting your eyes from computer screen strain.",
+            "passing_threshold": 60,
             "questions": [
                 {
-                    "question": "What is the clinical protocol prescribed by the 20-20-20 rule?",
+                    "question": "What is the famous 20-20-20 rule for healthy screen use?",
                     "options": [
-                        "Work for 20 hours, sleep for 20 minutes, drink 20 cups of coffee",
-                        "Every 20 minutes, gaze at an object at least 20 feet away for at least 20 seconds",
-                        "Read 20 pages of a book every 20 days with 20% brightness",
-                        "Close your eyes 20 times every 20 seconds while walking"
+                        "Every 20 minutes, look at something 20 feet away for 20 seconds",
+                        "Work 20 hours, blink 20 times, rest 20 minutes",
+                        "Stare at 20 different screens at once",
+                        "Keep your eyes closed for 20 hours"
                     ],
-                    "correct_index": 1,
-                    "explanation": "Looking 20 feet away for 20 seconds every 20 minutes allows the ciliary muscles inside the eye to relax completely from near-focus strain."
+                    "correct_index": 0,
+                    "explanation": "The 20-20-20 rule relaxes the focusing muscles inside your eyes."
                 },
                 {
-                    "question": "By what percentage does the average human blink rate drop when viewing computer screens?",
+                    "question": "What is the ideal distance between your eyes and your computer screen?",
                     "options": [
-                        "Blink rate increases by 200%",
-                        "Blink rate drops by over 60% (from ~18-20 down to ~6-8 blinks/min)",
-                        "Blink rate does not change at all",
-                        "Blink rate drops to zero permanently"
+                        "2 inches from your face (touching nose)",
+                        "About an arm's length (20 to 28 inches)",
+                        "Across the entire room (20 feet)",
+                        "Resting on your forehead"
                     ],
                     "correct_index": 1,
-                    "explanation": "Focused visual attention on screens reduces spontaneous blink rate by over 60%, causing rapid tear film evaporation and dry eyes."
+                    "explanation": "An arm's length provides comfortable viewing without straining eye muscles."
                 },
                 {
-                    "question": "What is the ideal distance for your primary computer monitor relative to your eyes?",
+                    "question": "What should you do if your eyes feel dry and tired from screen work?",
                     "options": [
-                        "4 to 6 inches away from your nose",
-                        "20 to 28 inches away (approximately arm's length)",
-                        "Across the room, at least 15 feet away",
-                        "Directly on your lap tilted straight up"
+                        "Blink intentionally, take visual breaks, and adjust room lighting",
+                        "Rub your eyes vigorously with dirty fingers",
+                        "Increase monitor brightness to maximum blinding level",
+                        "Turn off all room lights and work in total darkness"
                     ],
-                    "correct_index": 1,
-                    "explanation": "An arm's length (20 to 28 inches) minimizes convergence strain while preserving text legibility."
+                    "correct_index": 0,
+                    "explanation": "Blinking replenishes the tear film on your eyes, soothing dryness."
                 },
                 {
-                    "question": "Why should your computer screen be positioned slightly downward (15-20 degrees below eye level)?",
+                    "question": "How should your computer screen brightness be set?",
                     "options": [
-                        "Because gravity pulls the pixels downward",
-                        "Because looking slightly downward keeps eyelids covering more ocular surface, reducing tear evaporation",
-                        "So that your colleagues cannot see what you are typing",
-                        "It has no biological benefit"
+                        "Balanced comfortably to match the surrounding room lighting",
+                        "Blindingly bright in a completely dark room",
+                        "Completely pitch black so text is unreadable",
+                        "Flashing rapidly"
                     ],
-                    "correct_index": 1,
-                    "explanation": "A downward gaze exposes significantly less ocular surface area to air, decreasing tear film evaporation by up to 30%."
+                    "correct_index": 0,
+                    "explanation": "Matching display brightness to ambient light prevents harsh contrast strain."
+                },
+                {
+                    "question": "What is an easy, relaxing exercise for tired eyes?",
+                    "options": [
+                        "Gently cupping warm palms over closed eyes for 60 seconds",
+                        "Staring unblinkingly at the screen for 2 hours",
+                        "Looking directly into a bright flashlight",
+                        "Squinting as hard as possible"
+                    ],
+                    "correct_index": 0,
+                    "explanation": "Warm palming provides complete darkness, relaxing the optic nerve and eye muscles."
                 }
             ]
         }

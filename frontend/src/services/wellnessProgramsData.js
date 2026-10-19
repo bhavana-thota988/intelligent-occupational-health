@@ -17,7 +17,7 @@ export const WELLNESS_PROGRAMS_DATA = [
     "trainer_role": "Lead Occupational Ergonomist & Physical Therapist",
     "duration": "3 Weeks",
     "target_risk_area": "Posture",
-    "passing_threshold": 75,
+    "passing_threshold": 60,
     "requires_trainer_verification": true,
     "modules": [
       {
@@ -78,53 +78,64 @@ export const WELLNESS_PROGRAMS_DATA = [
       }
     ],
     "quiz": {
-      "title": "Ergonomic Wellness Knowledge Assessment",
-      "description": "Demonstrate your understanding of neutral sitting posture, display calibration, and wrist strain mitigation.",
-      "passing_threshold": 75,
+      "title": "Ergonomic Wellness Quick Assessment",
+      "description": "5 quick questions on workstation posture and pain prevention.",
+      "passing_threshold": 60,
       "questions": [
         {
-          "question": "What is the optimal vertical alignment for your primary computer monitor?",
+          "question": "How should your computer monitor be positioned?",
           "options": [
-            "The center of the screen should be 5 inches above your forehead",
-            "The top third of the screen should align with your horizontal eye level",
-            "The bottom of the screen should touch your desk surface",
-            "The monitor should be tilted 45 degrees upward toward the ceiling"
+            "Top of the screen aligned with eye level",
+            "High up toward the ceiling",
+            "Below your knees",
+            "Tilted completely to the side"
           ],
-          "correct_index": 1,
-          "explanation": "Aligning the top third of the monitor with horizontal eye level prevents neck hyperextension and cervical spine fatigue."
+          "correct_index": 0,
+          "explanation": "Aligning the top of your screen with eye level prevents neck strain."
         },
         {
-          "question": "When seated at your workstation, what angle should your elbows ideally maintain while typing?",
+          "question": "How should your feet be placed while sitting at your desk?",
           "options": [
-            "45 to 60 degrees with hands close to chest",
-            "90 to 100 degrees with shoulders relaxed and forearms parallel to desk",
-            "140 to 160 degrees with arms reaching far forward",
-            "Any angle is acceptable as long as you lean on the desk"
+            "Crossed tightly behind the chair legs",
+            "Hanging without touching anything",
+            "Flat on the floor or on a footrest",
+            "Resting on top of the computer table"
           ],
-          "correct_index": 1,
-          "explanation": "A 90-100 degree elbow angle keeps the shoulders depressed and prevents chronic upper trapezius tension."
+          "correct_index": 2,
+          "explanation": "Feet flat on the floor supports your lower back."
         },
         {
-          "question": "What is the correct way to position your wrists while actively typing?",
+          "question": "What is the recommended elbow angle while typing on a keyboard?",
           "options": [
-            "Bent sharply upward resting heavily on a hard desk edge",
-            "Straight and in a neutral plane, floating slightly above the keys",
-            "Tilted outward toward the pinky fingers as far as possible",
-            "Resting the palm creases on the laptop touchpad"
+            "Reaching far forward with locked arms",
+            "Around 90 degrees with shoulders relaxed",
+            "Raised high above your chest",
+            "Bent completely tight against your ribs"
           ],
           "correct_index": 1,
-          "explanation": "Keeping wrists straight and neutral avoids compression of the median nerve inside the carpal tunnel."
+          "explanation": "A 90-degree elbow angle keeps shoulders and neck relaxed."
         },
         {
-          "question": "Why is static sitting in one 'ideal' posture for 8 hours still harmful to your body?",
+          "question": "How often is it best to stand up, stretch, or change your posture?",
           "options": [
-            "Because computer screens emit gravitational waves",
-            "Because static postures impede circulation, disc nutrition, and cause muscle ischemia",
-            "It is not harmful; perfect posture eliminates all need for movement",
-            "Because office chairs lose their cushion within 2 hours"
+            "Once every 8 hours",
+            "Only when extreme pain occurs",
+            "Every 45 to 60 minutes",
+            "Never during office hours"
           ],
-          "correct_index": 1,
-          "explanation": "Spinal intervertebral discs lack direct blood supply and depend on movement-driven fluid exchange to receive nutrients."
+          "correct_index": 2,
+          "explanation": "Taking micro-breaks every 45-60 minutes keeps blood flowing and muscles healthy."
+        },
+        {
+          "question": "What helps prevent wrist pain while typing?",
+          "options": [
+            "Keeping wrists straight and in a neutral position",
+            "Bending wrists sharply backward on a hard desk edge",
+            "Slouching forward heavily",
+            "Typing using only one hand"
+          ],
+          "correct_index": 0,
+          "explanation": "Straight, neutral wrists avoid pressure on the carpal tunnel nerves."
         }
       ]
     }
@@ -147,7 +158,7 @@ export const WELLNESS_PROGRAMS_DATA = [
     "trainer_role": "Certified Occupational Wellbeing & Stress Specialist",
     "duration": "4 Weeks",
     "target_risk_area": "Stress",
-    "passing_threshold": 75,
+    "passing_threshold": 60,
     "requires_trainer_verification": true,
     "modules": [
       {
@@ -208,53 +219,64 @@ export const WELLNESS_PROGRAMS_DATA = [
       }
     ],
     "quiz": {
-      "title": "Stress Management Knowledge Assessment",
-      "description": "Assess your understanding of autonomic nervous system down-regulation, breathwork techniques, and attention management.",
-      "passing_threshold": 75,
+      "title": "Stress Management Quick Assessment",
+      "description": "5 quick questions on handling workplace stress and daily calm.",
+      "passing_threshold": 60,
       "questions": [
         {
-          "question": "Why does making exhalations longer than inhalations (such as in 4-7-8 breathing) calm the body?",
+          "question": "What is a fast and simple breathing technique to calm sudden stress?",
           "options": [
-            "It activates the parasympathetic branch of the vagus nerve, slowing heart rate",
-            "It increases adrenaline secretion to burn excess stress energy",
-            "It restricts oxygen to the brain, causing mild drowsiness",
-            "It forces muscles in the legs to contract"
+            "Deep, slow belly breathing (like 4-7-8 breathing)",
+            "Rapid shallow breathing",
+            "Holding your breath until dizzy",
+            "Fast hyperventilating"
           ],
           "correct_index": 0,
-          "explanation": "Longer exhalations increase thoracic pressure and stimulate baroreceptors, triggering the vagus nerve to slow cardiac pacing."
+          "explanation": "Slow diaphragmatic breathing activates your body's relaxation response."
         },
         {
-          "question": "What is 'attention residue' in cognitive productivity science?",
+          "question": "When you have too many urgent tasks at once, what is the best first step?",
           "options": [
-            "A physical dust that accumulates on workstation computer screens",
-            "Mental capacity that remains stuck on a prior task after switching to a new one",
-            "The inability to remember client names after lunch",
-            "The time spent waiting for video conferences to begin"
+            "Try doing 10 things at the same time",
+            "Take a breath and prioritize the top 1 or 2 most important items",
+            "Panic and skip lunch",
+            "Ignore all communications completely"
           ],
           "correct_index": 1,
-          "explanation": "Attention residue occurs when transitioning between tasks before completion, leaving cognitive bandwidth tied to the unfinished task."
+          "explanation": "Pausing to prioritize brings focus and lowers overwhelm."
         },
         {
-          "question": "What is the primary psychological purpose of an end-of-day workday shutdown ritual?",
+          "question": "How does taking a 5-minute mental break during a busy day help?",
           "options": [
-            "To prove to HR that you stayed until the exact contract end time",
-            "To close open cognitive loops and prevent after-hours work rumination",
-            "To delete all work emails received during the day",
-            "To organize desktop icons by color"
+            "It restores mental clarity and reduces stress",
+            "It completely ruins your workday",
+            "It causes more fatigue",
+            "It makes you forget everything you know"
           ],
-          "correct_index": 1,
-          "explanation": "Structured shutdown rituals resolve the Zeigarnik effect by scheduling tomorrow's priorities, allowing the brain to enter rest mode."
+          "correct_index": 0,
+          "explanation": "Brief mental breaks reset your nervous system and boost focus."
         },
         {
-          "question": "How does chronic, unmanaged workplace stress impact decision-making in the brain?",
+          "question": "What is a healthy routine when your workday is finished?",
           "options": [
-            "It enhances mathematical intuition and memory recall",
-            "It shifts neural control toward the amygdala and impairs prefrontal cortex executive functions",
-            "It has zero impact on cognitive performance",
-            "It increases long-term neurogenesis in the hippocampus"
+            "Check work messages every 5 minutes all night",
+            "Keep worrying about tomorrow while trying to sleep",
+            "Disconnect from work tools and take time to rest and recharge",
+            "Work all night without sleeping"
+          ],
+          "correct_index": 2,
+          "explanation": "Clear boundaries between work and personal time prevent burnout."
+        },
+        {
+          "question": "Which of these is most effective for long-term stress management?",
+          "options": [
+            "Drinking 8 cups of strong coffee",
+            "Regular breaks, good hydration, and adequate sleep",
+            "Working non-stop without drinking water",
+            "Bottling up frustration without taking breaks"
           ],
           "correct_index": 1,
-          "explanation": "Chronic cortisol surges atrophy dendrites in the prefrontal cortex, leading to reactive, short-sighted decisions and emotional volatility."
+          "explanation": "Daily hydration, movement, and sleep build natural stress resilience."
         }
       ]
     }
@@ -277,7 +299,7 @@ export const WELLNESS_PROGRAMS_DATA = [
     "trainer_role": "Lead Occupational Ergonomist & Sleep Health Specialist",
     "duration": "3 Weeks",
     "target_risk_area": "Recovery",
-    "passing_threshold": 75,
+    "passing_threshold": 60,
     "requires_trainer_verification": true,
     "modules": [
       {
@@ -338,53 +360,64 @@ export const WELLNESS_PROGRAMS_DATA = [
       }
     ],
     "quiz": {
-      "title": "Fatigue and Sleep Management Knowledge Assessment",
-      "description": "Assess your understanding of sleep architecture, ultradian rhythm alignment, and sleep hygiene practices.",
-      "passing_threshold": 75,
+      "title": "Fatigue & Sleep Quick Assessment",
+      "description": "5 quick questions on sleep hygiene and staying energized at work.",
+      "passing_threshold": 60,
       "questions": [
         {
-          "question": "During which phase of sleep does the body perform the majority of physical tissue repair and release growth hormone?",
+          "question": "How many hours of restful sleep do adults generally need each night?",
           "options": [
-            "Stage 1 Light Transitional Sleep",
-            "Stage 3 Non-REM Slow-Wave Deep Sleep",
-            "REM Dream Sleep",
-            "The waking transition period"
+            "3 to 4 hours",
+            "7 to 8 hours",
+            "12 to 14 hours",
+            "1 to 2 hours"
           ],
           "correct_index": 1,
-          "explanation": "Stage 3 Slow-Wave Sleep is characterized by delta brainwaves, massive release of human growth hormone, and cellular repair."
+          "explanation": "7-8 hours is the recommended sleep duration for physical and mental recovery."
         },
         {
-          "question": "What is the recommended timing for evening digital screen curfews prior to bedtime?",
+          "question": "What should you ideally do 30 minutes before bedtime to sleep better?",
           "options": [
-            "5 seconds before closing eyes",
-            "At least 45 to 60 minutes before bedtime",
-            "Screens should be kept on full brightness while falling asleep",
-            "Screen curfews have no biological effect on humans"
+            "Drink heavy energy drinks with caffeine",
+            "Work on intense spreadsheets with bright screen light",
+            "Turn off bright screens and relax your mind",
+            "Stare closely at social media in the dark"
           ],
-          "correct_index": 1,
-          "explanation": "Blue light in the 460-480nm spectrum stimulates melanopsin receptors in the eye, suppressing melatonin synthesis for 45-90 minutes."
+          "correct_index": 2,
+          "explanation": "Avoiding blue light allows your body to produce natural melatonin for sleep."
         },
         {
-          "question": "What does being awake for 17 consecutive hours equate to in terms of cognitive impairment?",
+          "question": "What is the 50/10 work-rest rhythm designed to do?",
           "options": [
-            "Superior mental alertness and faster typing speeds",
-            "A blood alcohol concentration (BAC) equivalent of approximately 0.05%",
-            "No measurable cognitive deficit",
-            "A 50% increase in short-term memory capacity"
+            "Work for 50 minutes, then take a 5-10 minute stretch or posture break",
+            "Sleep for 50 minutes after working for 10 minutes",
+            "Work 50 hours non-stop without sleep",
+            "Drink 50 cups of water in 10 minutes"
           ],
-          "correct_index": 1,
-          "explanation": "Extensive occupational safety studies confirm that 17 hours of continuous wakefulness produces cognitive deficits equal to 0.05% BAC."
+          "correct_index": 0,
+          "explanation": "A 50/10 cadence beats fatigue and keeps mental energy steady."
         },
         {
-          "question": "Why is scrolling on a smartphone during a work break considered a 'fake break'?",
+          "question": "Which of these is a clear sign of workplace fatigue?",
           "options": [
-            "Because smartphones are too heavy to hold",
-            "Because it maintains high optical strain and cognitive task processing without resting neural systems",
-            "Because phone screens are only designed for evening use",
-            "Because phones do not have internet connectivity"
+            "Frequent yawning, heavy eyes, and wandering concentration",
+            "Feeling boundless energy",
+            "Sharp laser-like focus for 12 hours",
+            "Zero desire to sit down or rest"
           ],
-          "correct_index": 1,
-          "explanation": "True recovery requires detaching both the visual system and executive cognitive faculties from digital stimulation."
+          "correct_index": 0,
+          "explanation": "Yawning and loss of focus indicate your brain needs a brief recovery break."
+        },
+        {
+          "question": "What is a healthy way to beat the afternoon energy slump at work?",
+          "options": [
+            "Drink a fresh glass of water and take a brief 2-minute walk",
+            "Eat high-sugar fast food and candy",
+            "Stay completely motionless at your desk",
+            "Complain without moving"
+          ],
+          "correct_index": 0,
+          "explanation": "Hydration and light movement increase oxygen flow to the brain."
         }
       ]
     }
@@ -407,7 +440,7 @@ export const WELLNESS_PROGRAMS_DATA = [
     "trainer_role": "Workplace Safety & Ergonomics Compliance Lead",
     "duration": "2 Weeks",
     "target_risk_area": "Safety",
-    "passing_threshold": 75,
+    "passing_threshold": 60,
     "requires_trainer_verification": true,
     "modules": [
       {
@@ -468,53 +501,64 @@ export const WELLNESS_PROGRAMS_DATA = [
       }
     ],
     "quiz": {
-      "title": "Workplace Safety Essentials Knowledge Assessment",
-      "description": "Assess your understanding of hazard classification, emergency evacuation protocols, and incident reporting.",
-      "passing_threshold": 75,
+      "title": "Workplace Safety Quick Assessment",
+      "description": "5 quick questions on identifying hazards and staying safe at work.",
+      "passing_threshold": 60,
       "questions": [
         {
-          "question": "What is the very first action you must take when an emergency evacuation alarm sounds?",
+          "question": "What should you do if you notice a liquid spill on an office walkway?",
           "options": [
-            "Finish your current email and save your open spreadsheet",
-            "Cease work immediately, leave personal belongings, and proceed toward the nearest exit stairwell",
-            "Take the nearest elevator down to the ground floor",
-            "Wait for 10 minutes to see if it is a false alarm"
+            "Step over it and ignore it",
+            "Clean or report it immediately to prevent slips and falls",
+            "Wait for someone else to slip",
+            "Cover it with a loose sheet of paper"
           ],
           "correct_index": 1,
-          "explanation": "Immediate evacuation without retrieving personal belongings saves lives and avoids stairwell congestion."
+          "explanation": "Promptly addressing spills prevents painful slips and workplace injuries."
         },
         {
-          "question": "Why is 'daisy-chaining' (plugging one power strip into another) prohibited in corporate safety policies?",
+          "question": "How should emergency exit doors and corridors always be kept?",
           "options": [
-            "It slows down computer processor clock speeds",
-            "It can overload the circuit and create severe electrical fire hazards through resistive heating",
-            "It looks messy to office visitors",
-            "It consumes double the internet bandwidth"
+            "Blocked with surplus office boxes",
+            "Locked with heavy padlock chains",
+            "Completely clear, unlocked, and unobstructed",
+            "Hidden behind decorative curtains"
           ],
-          "correct_index": 1,
-          "explanation": "Daisy-chaining exceeds the rated ampacity of electrical cables, causing insulation melting and electrical fires."
+          "correct_index": 2,
+          "explanation": "Exit routes must always remain clear for safe emergency evacuations."
         },
         {
-          "question": "What is a 'near-miss' in workplace occupational health and safety?",
+          "question": "What should you do if you spot a damaged, frayed electrical wire?",
           "options": [
-            "An employee arriving 2 minutes late for work",
-            "An unplanned event that had the potential to cause injury or damage but did not",
-            "A missed telephone call from a client",
-            "Failing an ergonomic quiz attempt"
+            "Do not touch it; report it immediately to facilities or safety staff",
+            "Wrap it with regular scotch tape and keep using it",
+            "Pour water near it",
+            "Ignore it until a spark happens"
           ],
-          "correct_index": 1,
-          "explanation": "Near-misses are critical leading indicators that highlight safety hazards before a tragic injury occurs."
+          "correct_index": 0,
+          "explanation": "Damaged cords present an electrical hazard and must be fixed by professionals."
         },
         {
-          "question": "Why must elevators NEVER be used during a building fire evacuation?",
+          "question": "During a building fire alarm evacuation, what should you always use?",
           "options": [
-            "Elevators are reserved exclusively for building management",
-            "Elevators can lose power, trap occupants, or channel lethal smoke and flames into the shaft",
-            "Elevators move too slowly compared to walking",
-            "Elevator doors automatically lock after 5:00 PM"
+            "The building elevators",
+            "The emergency exit stairs",
+            "Hide under the nearest desk",
+            "Climb onto the roof"
           ],
           "correct_index": 1,
-          "explanation": "Elevator shafts act as natural chimneys for smoke and heat, and power failures frequently trap occupants between burning floors."
+          "explanation": "Elevators can lose power in a fire; always use stairwells."
+        },
+        {
+          "question": "Why is reporting 'near-miss' incidents important in a workplace?",
+          "options": [
+            "It helps fix hidden hazards before an actual injury occurs",
+            "To assign blame to employees",
+            "To generate unnecessary paperwork",
+            "To cancel all work projects"
+          ],
+          "correct_index": 0,
+          "explanation": "Near-miss reporting helps create a proactive, injury-free workplace."
         }
       ]
     }
@@ -537,7 +581,7 @@ export const WELLNESS_PROGRAMS_DATA = [
     "trainer_role": "Occupational Physical Therapist & Lifestyle Coach",
     "duration": "3 Weeks",
     "target_risk_area": "Lifestyle",
-    "passing_threshold": 75,
+    "passing_threshold": 60,
     "requires_trainer_verification": true,
     "modules": [
       {
@@ -598,53 +642,64 @@ export const WELLNESS_PROGRAMS_DATA = [
       }
     ],
     "quiz": {
-      "title": "Healthy Lifestyle at Work Knowledge Assessment",
-      "description": "Assess your understanding of workday nutrition, hydration benchmarks, and behavioral habit stacking.",
-      "passing_threshold": 75,
+      "title": "Healthy Lifestyle Quick Assessment",
+      "description": "5 quick questions on desk nutrition, hydration, and movement habits.",
+      "passing_threshold": 60,
       "questions": [
         {
-          "question": "What is the primary cause of the severe 2:00 PM 'food coma' after eating refined, high-sugar lunches?",
+          "question": "What is a good daily hydration target during office hours?",
           "options": [
-            "An allergy to office air conditioning",
-            "A rapid blood glucose spike followed by an acute insulin-driven crash",
-            "Normal digestive enzymes shutting down brain function permanently",
-            "Too much dietary fiber in the stomach"
+            "Only one small sip of water all day",
+            "Around 2 to 3 liters of water spread across the day",
+            "Zero water; only sugary soda",
+            "10 liters in one single gulp"
           ],
           "correct_index": 1,
-          "explanation": "Refined carbohydrates cause rapid hyperglycemia followed by reactive hypoglycemia, leaving the brain deprived of steady glucose."
+          "explanation": "Consistent water intake throughout the day prevents dehydration and headaches."
         },
         {
-          "question": "What is the recommended daily baseline water intake for an adult working at a desk?",
+          "question": "Which of these is a nutritious snack to keep at your desk?",
           "options": [
-            "200 milliliters (less than one cup)",
-            "2.0 to 2.5 liters (approx. 8 to 10 glasses)",
-            "10 liters per day",
-            "Water should only be consumed if you have a fever"
+            "Fresh fruit, almonds, or walnuts",
+            "Sugary candy bars and deep-fried chips every hour",
+            "Only pure sugar packets",
+            "Skipping food completely"
           ],
-          "correct_index": 1,
-          "explanation": "2.0 to 2.5 liters provides adequate cellular hydration, supports kidney filtration, and prevents mild cognitive fatigue."
+          "correct_index": 0,
+          "explanation": "Fruits and nuts provide steady energy without blood sugar crashes."
         },
         {
-          "question": "In behavioral psychology, what is 'habit stacking'?",
+          "question": "Why is standing up or stretching during the workday helpful?",
           "options": [
-            "Stacking multiple heavy books on top of your keyboard",
-            "Pairing a new desired healthy habit directly after an established daily routine",
-            "Attempting to change 20 lifestyle habits simultaneously on Monday morning",
-            "Working without sleep for three consecutive days"
+            "It boosts circulation and reduces muscle stiffness",
+            "It makes you fall asleep immediately",
+            "It destroys all your work productivity",
+            "It has no benefit whatsoever"
           ],
-          "correct_index": 1,
-          "explanation": "Habit stacking uses the established neural pathway of an existing habit as a trigger for a new, desired behavior."
+          "correct_index": 0,
+          "explanation": "Light movement promotes circulation and relieves spinal compression."
         },
         {
-          "question": "Why is an evening 30-minute gym session insufficient to counteract 8 hours of uninterrupted static sitting?",
+          "question": "What is an easy way to increase your daily steps during work?",
           "options": [
-            "Because gym equipment does not work in the evening",
-            "Because prolonged uninterrupted sitting shuts down metabolic enzymes like LPL regardless of exercise",
-            "Because human muscles only respond to morning workouts",
-            "Gym sessions are completely sufficient and no movement during the day is needed"
+            "Take the stairs instead of the elevator for 1-2 floors",
+            "Stay glued to your chair all day",
+            "Never walk anywhere",
+            "Ride an office chair down the hall"
           ],
-          "correct_index": 1,
-          "explanation": "Lipoprotein lipase (LPL) activity drops significantly during uninterrupted sitting, requiring intermittent movement throughout the day."
+          "correct_index": 0,
+          "explanation": "Using stairs and taking short walking breaks adds up to thousands of healthy steps."
+        },
+        {
+          "question": "How does balanced nutrition help your work performance?",
+          "options": [
+            "Provides smooth, sustained energy and clear thinking",
+            "Causes severe brain fog",
+            "Makes you unable to work",
+            "Eliminates the need for any sleep"
+          ],
+          "correct_index": 0,
+          "explanation": "Nutrient-rich foods prevent afternoon fatigue and sustain mental clarity."
         }
       ]
     }
@@ -667,7 +722,7 @@ export const WELLNESS_PROGRAMS_DATA = [
     "trainer_role": "Lead Occupational Ergonomist & Visual Health Specialist",
     "duration": "2 Weeks",
     "target_risk_area": "Vision",
-    "passing_threshold": 75,
+    "passing_threshold": 60,
     "requires_trainer_verification": true,
     "modules": [
       {
@@ -728,53 +783,64 @@ export const WELLNESS_PROGRAMS_DATA = [
       }
     ],
     "quiz": {
-      "title": "Digital Eye Care Knowledge Assessment",
-      "description": "Assess your understanding of the 20-20-20 rule, optical accommodation, and display glare management.",
-      "passing_threshold": 75,
+      "title": "Digital Eye Care Quick Assessment",
+      "description": "5 quick questions on protecting your eyes from computer screen strain.",
+      "passing_threshold": 60,
       "questions": [
         {
-          "question": "What is the clinical protocol prescribed by the 20-20-20 rule?",
+          "question": "What is the famous 20-20-20 rule for healthy screen use?",
           "options": [
-            "Work for 20 hours, sleep for 20 minutes, drink 20 cups of coffee",
-            "Every 20 minutes, gaze at an object at least 20 feet away for at least 20 seconds",
-            "Read 20 pages of a book every 20 days with 20% brightness",
-            "Close your eyes 20 times every 20 seconds while walking"
+            "Every 20 minutes, look at something 20 feet away for 20 seconds",
+            "Work 20 hours, blink 20 times, rest 20 minutes",
+            "Stare at 20 different screens at once",
+            "Keep your eyes closed for 20 hours"
           ],
-          "correct_index": 1,
-          "explanation": "Looking 20 feet away for 20 seconds every 20 minutes allows the ciliary muscles inside the eye to relax completely from near-focus strain."
+          "correct_index": 0,
+          "explanation": "The 20-20-20 rule relaxes the focusing muscles inside your eyes."
         },
         {
-          "question": "By what percentage does the average human blink rate drop when viewing computer screens?",
+          "question": "What is the ideal distance between your eyes and your computer screen?",
           "options": [
-            "Blink rate increases by 200%",
-            "Blink rate drops by over 60% (from ~18-20 down to ~6-8 blinks/min)",
-            "Blink rate does not change at all",
-            "Blink rate drops to zero permanently"
+            "2 inches from your face (touching nose)",
+            "About an arm's length (20 to 28 inches)",
+            "Across the entire room (20 feet)",
+            "Resting on your forehead"
           ],
           "correct_index": 1,
-          "explanation": "Focused visual attention on screens reduces spontaneous blink rate by over 60%, causing rapid tear film evaporation and dry eyes."
+          "explanation": "An arm's length provides comfortable viewing without straining eye muscles."
         },
         {
-          "question": "What is the ideal distance for your primary computer monitor relative to your eyes?",
+          "question": "What should you do if your eyes feel dry and tired from screen work?",
           "options": [
-            "4 to 6 inches away from your nose",
-            "20 to 28 inches away (approximately arm's length)",
-            "Across the room, at least 15 feet away",
-            "Directly on your lap tilted straight up"
+            "Blink intentionally, take visual breaks, and adjust room lighting",
+            "Rub your eyes vigorously with dirty fingers",
+            "Increase monitor brightness to maximum blinding level",
+            "Turn off all room lights and work in total darkness"
           ],
-          "correct_index": 1,
-          "explanation": "An arm's length (20 to 28 inches) minimizes convergence strain while preserving text legibility."
+          "correct_index": 0,
+          "explanation": "Blinking replenishes the tear film on your eyes, soothing dryness."
         },
         {
-          "question": "Why should your computer screen be positioned slightly downward (15-20 degrees below eye level)?",
+          "question": "How should your computer screen brightness be set?",
           "options": [
-            "Because gravity pulls the pixels downward",
-            "Because looking slightly downward keeps eyelids covering more ocular surface, reducing tear evaporation",
-            "So that your colleagues cannot see what you are typing",
-            "It has no biological benefit"
+            "Balanced comfortably to match the surrounding room lighting",
+            "Blindingly bright in a completely dark room",
+            "Completely pitch black so text is unreadable",
+            "Flashing rapidly"
           ],
-          "correct_index": 1,
-          "explanation": "A downward gaze exposes significantly less ocular surface area to air, decreasing tear film evaporation by up to 30%."
+          "correct_index": 0,
+          "explanation": "Matching display brightness to ambient light prevents harsh contrast strain."
+        },
+        {
+          "question": "What is an easy, relaxing exercise for tired eyes?",
+          "options": [
+            "Gently cupping warm palms over closed eyes for 60 seconds",
+            "Staring unblinkingly at the screen for 2 hours",
+            "Looking directly into a bright flashlight",
+            "Squinting as hard as possible"
+          ],
+          "correct_index": 0,
+          "explanation": "Warm palming provides complete darkness, relaxing the optic nerve and eye muscles."
         }
       ]
     }

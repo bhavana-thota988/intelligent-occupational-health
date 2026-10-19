@@ -56,13 +56,12 @@ def register(payload: UserRegisterRequest, db: Session = Depends(get_db)):
     """
     # 1. Reject public registration attempts for privileged roles
     requested_role = (payload.role or "employee").strip().lower()
-    if requested_role == "admin":
+    if requested_role in ["admin", "trainer"]:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Public administrator registration is prohibited. Administrator accounts are provisioned exclusively via controlled infrastructure setup."
+            detail=f"Public {requested_role.title()} registration is prohibited. Privileged accounts are provisioned exclusively via administrative setup."
         )
-    if requested_role not in ["employee", "trainer"]:
-        requested_role = "employee"
+    requested_role = "employee"
 
     # 2. Strict Email Validation & Normalization
     is_valid, normalized_email, error_msg = validate_workhealth_email(payload.email)
@@ -82,43 +81,38 @@ def register(payload: UserRegisterRequest, db: Session = Depends(get_db)):
             detail="Passwords do not match. Please re-enter."
         )
 
-    # 4. Create or update user immediately without verification barriers
+    # 4. Prevent duplicate email registrations
     existing_user = db.query(User).filter(User.email == normalized_email).first()
     if existing_user:
-        user = existing_user
-        user.name = payload.name.strip()
-        user.role = requested_role
-        user.is_verified = True
-        user.approval_status = "approved"
-        user.is_active = True
-        if raw_password:
-            user.hashed_password = get_password_hash(raw_password)
-        db.commit()
-    else:
-        emp_id = payload.employee_id or (f"EMP-{hash(normalized_email) % 9000 + 1000}" if requested_role == "employee" else None)
-        trainer_id = payload.trainer_id or (f"TR-{hash(normalized_email) % 9000 + 1000}" if requested_role == "trainer" else None)
-        user = User(
-            name=payload.name.strip(),
-            email=normalized_email,
-            role=requested_role,
-            employee_id=emp_id,
-            trainer_id=trainer_id,
-            department=payload.department or ("Health & Ergonomics" if requested_role == "trainer" else "Engineering"),
-            job_role=payload.professional_role if requested_role == "trainer" else (payload.job_role or "Senior Software Engineer"),
-            hashed_password=get_password_hash(raw_password),
-            is_active=True,
-            is_verified=True,
-            approval_status="approved"
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="An account with this email address already exists. Please sign in instead."
         )
-        db.add(user)
-        db.commit()
-        db.refresh(user)
+
+    emp_id = payload.employee_id or (f"EMP-{abs(hash(normalized_email)) % 9000 + 1000}" if requested_role == "employee" else None)
+    trainer_id = payload.trainer_id or (f"TR-{abs(hash(normalized_email)) % 9000 + 1000}" if requested_role == "trainer" else None)
+    user = User(
+        name=payload.name.strip(),
+        email=normalized_email,
+        role=requested_role,
+        employee_id=emp_id,
+        trainer_id=trainer_id,
+        department=payload.department or ("Health & Ergonomics" if requested_role == "trainer" else "Engineering"),
+        job_role=payload.professional_role if requested_role == "trainer" else (payload.job_role or "Senior Software Engineer"),
+        hashed_password=get_password_hash(raw_password),
+        is_active=True,
+        is_verified=True,
+        approval_status="approved"
+    )
+    db.add(user)
+    db.commit()
+    db.refresh(user)
 
     audit_entry = AuditLog(
         user_email=normalized_email,
         action="USER_REGISTERED_DIRECT",
         category="Auth",
-        details="User registered successfully with direct portal activation."
+        details=f"User {normalized_email} registered successfully as {requested_role}."
     )
     db.add(audit_entry)
     db.commit()
@@ -351,11 +345,11 @@ def resend_otp(payload: ResendOTPRequest, db: Session = Depends(get_db)):
 @router.post("/login")
 def login(payload: UserLogin, db: Session = Depends(get_db)):
     """
-    Authenticates a user against database password hashes and enforces RBAC.
-    - Verifies password with bcrypt.
-    - Enforces email verification before granting access.
-    - Enforces account approval status and active state.
-    - Prevents cross-role access (Employees cannot log into Admin/Trainer portals).
+    Authenticates a user against SQLite database password hashes and enforces RBAC.
+    - Verifies password with bcrypt against stored hash.
+    - Rejects unregistered emails with clear error message.
+    - Rejects incorrect passwords with clear error message.
+    - Prevents cross-role access (Employees cannot log into Admin/Trainer consoles).
     """
     normalized_email = normalize_email(payload.email)
     password = payload.password.strip() if payload.password else ""
@@ -369,35 +363,43 @@ def login(payload: UserLogin, db: Session = Depends(get_db)):
 
     user = db.query(User).filter(User.email == normalized_email).first()
 
-    # Check user existence; if not found, create for seamless login
+    # Reject unregistered emails
     if not user:
-        role_to_assign = requested_portal if requested_portal in ["employee", "trainer", "admin"] else "employee"
-        name_part = normalized_email.split("@")[0].replace(".", " ").title()
-        user = User(
-            name=name_part,
-            email=normalized_email,
-            role=role_to_assign,
-            employee_id=f"EMP-{hash(normalized_email) % 9000 + 1000}",
-            department="IT & Operations" if role_to_assign == "admin" else ("Health & Ergonomics" if role_to_assign == "trainer" else "Engineering"),
-            job_role=f"{role_to_assign.title()} Specialist" if role_to_assign != "employee" else "Senior Software Engineer",
-            hashed_password=get_password_hash(password),
-            is_active=True,
-            is_verified=True,
-            approval_status="approved"
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="No account found with this email address. Please check your email or register."
         )
-        db.add(user)
+
+    # Verify password against securely stored bcrypt hash
+    if not user.hashed_password or not verify_password(password, user.hashed_password):
+        user.failed_login_attempts = (user.failed_login_attempts or 0) + 1
         db.commit()
-        db.refresh(user)
-    else:
-        # Auto-verify account
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect password. Please verify your password and try again."
+        )
+
+    # Check active status
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="This account has been deactivated. Please contact your administrator."
+        )
+
+    # Enforce role-based access: Prevent Employee accounts from accessing Trainer or Admin portals
+    if requested_portal in ["trainer", "admin"]:
+        if user.role != requested_portal:
+            portal_name = "Trainer Console" if requested_portal == "trainer" else "Admin Directorate"
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail=f"Access denied: You cannot access {portal_name} with an {user.role.title()} account."
+            )
+
+    # Ensure status is approved & verified (no OTP required)
+    if not user.is_verified:
         user.is_verified = True
+    if user.approval_status != "approved":
         user.approval_status = "approved"
-        user.is_active = True
-        if requested_portal in ["employee", "trainer", "admin"]:
-            # If standard demo emails, allow portal matching
-            if normalized_email in ["admin@company.com", "trainer@company.com", "employee@company.com"]:
-                user.role = requested_portal
-        db.commit()
 
     # Record login timestamp
     user.last_login_at = datetime.datetime.utcnow()

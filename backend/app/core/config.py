@@ -1,9 +1,12 @@
 import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DEFAULT_DB_PATH = os.path.join(BACKEND_DIR, "occupational_health.db").replace("\\", "/")
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env"),
+        env_file=os.path.join(BACKEND_DIR, ".env"),
         env_file_encoding="utf-8",
         extra="ignore",
         case_sensitive=True
@@ -12,7 +15,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "WorkHealth AI — Intelligent Occupational Health Platform"
     PROJECT_VERSION: str = "1.0.0"
     API_V1_STR: str = "/api"
-    DATABASE_URL: str = "sqlite:///./occupational_health.db"
+    DATABASE_URL: str = f"sqlite:///{DEFAULT_DB_PATH}"
     SECRET_KEY: str = "workhealth-ai-jwt-super-secret-key-production-2026-xyz987"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24

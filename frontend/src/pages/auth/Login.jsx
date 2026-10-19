@@ -15,8 +15,8 @@ import { authService } from "../../services/authService";
 export default function Login() {
   const navigate = useNavigate();
   const [selectedPortal, setSelectedPortal] = useState("employee"); // 'employee', 'trainer', 'admin'
-  const [email, setEmail] = useState("employee@company.com");
-  const [password, setPassword] = useState("Corporate2026!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,31 +25,23 @@ export default function Login() {
   const portalConfigs = {
     employee: {
       title: "Employee Health Portal",
-      description: "Sign in to screen workplace risks, track wellbeing sessions, and access your verified certificates.",
-      demoEmail: "employee@company.com",
-      demoRole: "Employee Workspace",
+      description: "Sign in using your registered personal or corporate email and password to access your dashboard.",
       icon: User
     },
     trainer: {
       title: "Trainer Coaching Console",
       description: "Sign in to review completed employee programs, provide structured feedback, and issue verified completion credentials.",
-      demoEmail: "trainer@company.com",
-      demoRole: "Trainer Workspace",
       icon: Activity
     },
     admin: {
       title: "Health Directorate Console",
       description: "Manage accredited occupational specialists, assign clinical pathways, oversee verifications, and audit workforce compliance.",
-      demoEmail: "admin@company.com",
-      demoRole: "Admin Directorate",
       icon: ShieldCheck
     }
   };
 
   const handlePortalSwitch = (portalKey) => {
     setSelectedPortal(portalKey);
-    setEmail(portalConfigs[portalKey].demoEmail);
-    setPassword("Corporate2026!");
     setError("");
   };
 
@@ -156,13 +148,13 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="form-label" htmlFor="email">
-            Work Email Address
+            Email Address
           </label>
           <input
             id="email"
             type="email"
             className="form-input"
-            placeholder="e.g. name@company.com"
+            placeholder="Enter your email address (e.g. yourname@gmail.com)"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -226,51 +218,6 @@ export default function Login() {
           <ArrowRight size={16} />
         </button>
       </form>
-
-      {/* Quick Role Fillers */}
-      <div
-        style={{
-          marginTop: "22px",
-          padding: "14px",
-          borderRadius: "8px",
-          background: "#F8FAF9",
-          border: "1px dashed var(--border-subtle)",
-        }}
-      >
-        <span style={{ fontSize: "11px", fontWeight: 700, color: "var(--text-muted)", display: "block", marginBottom: 8, textTransform: "uppercase" }}>
-          Sample Workspace Accounts
-        </span>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-          {[
-            { label: "Employee Account", role: "employee", email: "employee@company.com" },
-            { label: "Trainer Account", role: "trainer", email: "trainer@company.com" },
-            { label: "Admin Directorate", role: "admin", email: "admin@company.com" },
-          ].map((item) => (
-            <button
-              key={item.label}
-              type="button"
-              onClick={() => {
-                setSelectedPortal(item.role);
-                setEmail(item.email);
-                setPassword("Corporate2026!");
-                setError("");
-              }}
-              style={{
-                fontSize: "12px",
-                padding: "6px 12px",
-                borderRadius: "5px",
-                background: selectedPortal === item.role ? "var(--color-primary-light)" : "#FFFFFF",
-                border: selectedPortal === item.role ? "1px solid var(--color-primary)" : "1px solid var(--border-subtle)",
-                color: selectedPortal === item.role ? "var(--color-primary)" : "var(--text-body)",
-                fontWeight: 600,
-                cursor: "pointer"
-              }}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </div>
 
       <div style={{ marginTop: "22px", textAlign: "center", fontSize: "13px", color: "var(--text-muted)" }}>
         Need to register a new account?{" "}

@@ -183,11 +183,21 @@ export const programService = {
     // Evaluate answers
     const questions = prog.quiz?.questions || [];
     let correctCount = 0;
-    questions.forEach((q, idx) => {
-      const targetIdx = q.correct_index !== undefined ? q.correct_index : q.correct_option;
-      if (answers[idx] !== undefined && (answers[idx] === targetIdx || answers[idx] === q.correct_option)) {
+    const detailedResults = questions.map((q, idx) => {
+      const targetIdx = q.correct_index !== undefined ? q.correct_index : (q.correct_option !== undefined ? q.correct_option : 0);
+      const userChoice = answers[idx] !== undefined ? answers[idx] : null;
+      const isCorrect = userChoice === targetIdx;
+      if (isCorrect) {
         correctCount += 1;
       }
+      return {
+        questionIndex: idx,
+        question: q.question,
+        userChoice,
+        correctIndex: targetIdx,
+        isCorrect,
+        explanation: q.explanation || ""
+      };
     });
 
     const scorePct = questions.length > 0 ? Math.round((correctCount / questions.length) * 100) : 100;
@@ -206,6 +216,8 @@ export const programService = {
     currentProg.quizScore = scorePct;
     currentProg.quizCorrectCount = correctCount;
     currentProg.quizTotalQuestions = questions.length;
+    currentProg.quizSubmittedAnswers = answers;
+    currentProg.quizDetailedResults = detailedResults;
     currentProg.quizAttemptsCount = (currentProg.quizAttemptsCount || 0) + 1;
 
     // Recalculate progress
@@ -216,15 +228,28 @@ export const programService = {
 
     dataStore.set("wellness_user_programs", progressMap);
 
-    // Background sync
-    api.post(`/programs/${prog.id || 1}/quiz/submit`, { answers }, { timeout: 1500 }).catch(() => {});
+    // Background sync to backend if running
+    try {
+      const res = await api.post(`/programs/${prog.id || 1}/quiz/submit`, { answers }, { timeout: 1500 });
+      if (res.data && res.data.detailedResults) {
+        return {
+          ...res.data,
+          submittedAnswers: answers,
+          detailedResults: res.data.detailedResults
+        };
+      }
+    } catch (e) {
+      // offline or timeout, use calculated local detailedResults
+    }
 
     return {
       score: scorePct,
       passed,
       passingThreshold,
       totalQuestions: questions.length,
-      correctCount
+      correctCount,
+      submittedAnswers: answers,
+      detailedResults
     };
   },
 
@@ -537,7 +562,9 @@ export const programService = {
 
     const quizQuestions = (prog.quiz?.questions || []).map((q) => ({
       question: q.question,
-      options: q.options
+      options: q.options,
+      correct_index: q.correct_index !== undefined ? q.correct_index : (q.correct_option !== undefined ? q.correct_option : 0),
+      explanation: q.explanation || ""
     }));
 
     return {
@@ -564,8 +591,10 @@ export const programService = {
       userProgress: {
         ...userProg,
         completedModuleIds: completedIds,
-        quizCorrectCount: userProg.quizCorrectCount !== undefined ? userProg.quizCorrectCount : (userProg.quizPassed ? 5 : null),
-        quizTotalQuestions: userProg.quizTotalQuestions || (prog.quiz?.questions?.length || 5)
+        quizCorrectCount: userProg.quizCorrectCount !== undefined ? userProg.quizCorrectCount : (userProg.quizPassed ? (prog.quiz?.questions?.length || 5) : null),
+        quizTotalQuestions: userProg.quizTotalQuestions || (prog.quiz?.questions?.length || 5),
+        quizSubmittedAnswers: userProg.quizSubmittedAnswers || null,
+        quizDetailedResults: userProg.quizDetailedResults || null
       },
       quiz: {
         title: prog.quiz?.title || "Knowledge Assessment",

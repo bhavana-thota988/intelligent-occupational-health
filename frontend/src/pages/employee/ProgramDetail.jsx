@@ -11,6 +11,7 @@ import {
   Sparkles,
   Award,
   ChevronRight,
+  ChevronLeft,
   Info,
   Check,
   X,
@@ -21,10 +22,233 @@ import {
   CheckCircle,
   ShieldAlert,
   Download,
-  ExternalLink
+  ExternalLink,
+  Play,
+  Pause,
+  Zap,
+  Target,
+  ListChecks,
+  CheckSquare
 } from "lucide-react";
 import { authService } from "../../services/authService";
 import { programService } from "../../services/programService";
+
+const PROGRAM_DRILL_TAGS = {
+  "ergonomic-wellness": [
+    "✓ Adjusted chair height for 90° elbow angle",
+    "✓ Positioned top 1/3 of monitor at eye level",
+    "✓ Planted feet flat on floor / footrest",
+    "✓ Practiced 5 cervical chin tucks",
+    "✓ Maintained neutral floating wrist alignment"
+  ],
+  "stress-management": [
+    "✓ Completed 4 cycles of Box Breathing (4-4-4-4)",
+    "✓ Practiced 4-7-8 parasympathetic reset",
+    "✓ Consciously relaxed jaw, neck & shoulder muscles",
+    "✓ Set 60-min uninterrupted deep-work focus block",
+    "✓ Established clear end-of-day shutdown ritual"
+  ],
+  "fatigue-and-sleep-management": [
+    "✓ 50/10 micro-movement break taken",
+    "✓ Drank 300ml cold water for hydration alertness",
+    "✓ Adjusted circadian room lighting & screen blue-light",
+    "✓ Conducted 3-minute brisk postural stretch walk",
+    "✓ Scheduled 10:30 PM digital wind-down curfew"
+  ],
+  "workplace-safety-essentials": [
+    "✓ Checked workstation perimeter for trip hazards",
+    "✓ Verified clear access to emergency exit route",
+    "✓ Positioned power strips safely off walk paths",
+    "✓ Tested safe two-hand lift posture with bent knees",
+    "✓ Noted workplace first-aid & emergency contact list"
+  ],
+  "healthy-lifestyle-at-work": [
+    "✓ Logged 500ml water bottle refill",
+    "✓ Replaced sugary snack with protein & fresh fruit",
+    "✓ Conducted 5-minute standing desk posture interval",
+    "✓ Practiced seated spinal rotational twist",
+    "✓ Completed 250 postural desk-side steps"
+  ],
+  "digital-eye-care": [
+    "✓ Executed 20-20-20 Rule (Gazed 20ft away for 20s)",
+    "✓ Blinked 10 complete cycles to rehydrate tear film",
+    "✓ Calibrated screen brightness to match room ambient light",
+    "✓ Activated system Night Light / warm display filter",
+    "✓ Cleaned monitor glass of dust & fingerprint glare"
+  ]
+};
+
+function formatInlineText(text) {
+  if (!text) return null;
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={i} style={{ color: "#0f172a", fontWeight: 700 }}>
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
+function renderFormattedMarkdown(markdown) {
+  if (!markdown) return null;
+  const lines = markdown.split("\n");
+  const elements = [];
+  let currentList = [];
+
+  const flushList = () => {
+    if (currentList.length > 0) {
+      elements.push(
+        <div key={`list-${elements.length}`} style={{ display: "flex", flexDirection: "column", gap: 8, margin: "14px 0" }}>
+          {currentList}
+        </div>
+      );
+      currentList = [];
+    }
+  };
+
+  lines.forEach((rawLine, idx) => {
+    const line = rawLine.trim();
+    if (!line) {
+      flushList();
+      return;
+    }
+
+    if (line.startsWith("### ")) {
+      flushList();
+      elements.push(
+        <div
+          key={`h3-${idx}`}
+          style={{
+            background: "linear-gradient(135deg, #f0fdfa 0%, #f8fafc 100%)",
+            borderLeft: "4px solid #0f766e",
+            padding: "12px 16px",
+            borderRadius: "0 8px 8px 0",
+            margin: "20px 0 12px"
+          }}
+        >
+          <h3 style={{ fontSize: 16, fontWeight: 800, color: "#0f766e", margin: 0 }}>
+            {formatInlineText(line.replace("### ", ""))}
+          </h3>
+        </div>
+      );
+    } else if (line.startsWith("#### ")) {
+      flushList();
+      elements.push(
+        <h4
+          key={`h4-${idx}`}
+          style={{
+            fontSize: 14.5,
+            fontWeight: 700,
+            color: "#1e293b",
+            margin: "18px 0 10px",
+            display: "flex",
+            alignItems: "center",
+            gap: 8
+          }}
+        >
+          <span style={{ width: 6, height: 16, background: "#0d9488", borderRadius: 3, display: "inline-block" }} />
+          {formatInlineText(line.replace("#### ", ""))}
+        </h4>
+      );
+    } else if (/^\d+\.\s/.test(line)) {
+      const stepNumber = line.match(/^(\d+)\.\s/)[1];
+      const stepText = line.replace(/^\d+\.\s/, "");
+      currentList.push(
+        <div
+          key={`step-${idx}`}
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 12,
+            background: "#ffffff",
+            border: "1px solid #e2e8f0",
+            borderRadius: 10,
+            padding: "12px 16px",
+            boxShadow: "0 1px 2px rgba(0,0,0,0.02)"
+          }}
+        >
+          <div
+            style={{
+              width: 24,
+              height: 24,
+              borderRadius: "50%",
+              background: "#0f766e",
+              color: "#ffffff",
+              display: "grid",
+              placeItems: "center",
+              fontSize: 12,
+              fontWeight: 800,
+              flexShrink: 0,
+              marginTop: 2
+            }}
+          >
+            {stepNumber}
+          </div>
+          <div style={{ fontSize: 13.5, color: "#334155", lineHeight: 1.6, flex: 1 }}>
+            {formatInlineText(stepText)}
+          </div>
+        </div>
+      );
+    } else if (line.startsWith("- [x]") || line.startsWith("- [ ]")) {
+      const isChecked = line.startsWith("- [x]");
+      const itemText = line.replace(/^-\s*\[(x| )\]\s*/, "");
+      currentList.push(
+        <div
+          key={`check-${idx}`}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            background: isChecked ? "#f0fdf4" : "#f8fafc",
+            border: isChecked ? "1px solid #bbf7d0" : "1px solid #e2e8f0",
+            borderRadius: 8,
+            padding: "9px 14px",
+            fontSize: 13.5,
+            color: "#334155"
+          }}
+        >
+          <div style={{ color: isChecked ? "#16a34a" : "#94a3b8", display: "flex" }}>
+            <CheckCircle2 size={16} />
+          </div>
+          <span>{formatInlineText(itemText)}</span>
+        </div>
+      );
+    } else if (line.startsWith("- ") || line.startsWith("* ")) {
+      const bulletText = line.replace(/^[-*]\s+/, "");
+      currentList.push(
+        <div
+          key={`bullet-${idx}`}
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 10,
+            fontSize: 13.5,
+            color: "#334155",
+            lineHeight: 1.55,
+            paddingLeft: 4
+          }}
+        >
+          <span style={{ color: "#0d9488", fontWeight: "bold", fontSize: 16, lineHeight: 1, marginTop: 3 }}>•</span>
+          <div>{formatInlineText(bulletText)}</div>
+        </div>
+      );
+    } else {
+      flushList();
+      elements.push(
+        <p key={`p-${idx}`} style={{ fontSize: 14, color: "#334155", lineHeight: 1.65, margin: "10px 0" }}>
+          {formatInlineText(line)}
+        </p>
+      );
+    }
+  });
+
+  flushList();
+  return elements;
+}
 
 export default function ProgramDetail() {
   const { programId } = useParams();
@@ -39,6 +263,11 @@ export default function ProgramDetail() {
   // Module practical notes state
   const [practicalNotes, setPracticalNotes] = useState("");
   const [completingModule, setCompletingModule] = useState(false);
+
+  // Active Desk Drill Stopwatch / Timer
+  const [timerSeconds, setTimerSeconds] = useState(60);
+  const [timerActive, setTimerActive] = useState(false);
+  const [timerFinished, setTimerFinished] = useState(false);
 
   // Quiz state
   const [quizAnswers, setQuizAnswers] = useState({});
@@ -55,6 +284,33 @@ export default function ProgramDetail() {
     loadProgram();
   }, [programId]);
 
+  // Sync module notes and reset exercise timer when selected module changes
+  useEffect(() => {
+    if (program?.modules && program.modules[selectedModuleIndex]) {
+      const currentMod = program.modules[selectedModuleIndex];
+      const savedNotes = program.userProgress?.practicalNotes?.[currentMod.id] ||
+                         program.userProgress?.practicalNotes?.[currentMod.order] || "";
+      setPracticalNotes(savedNotes);
+      setTimerSeconds(60);
+      setTimerActive(false);
+      setTimerFinished(false);
+    }
+  }, [selectedModuleIndex, program]);
+
+  // Exercise countdown timer tick
+  useEffect(() => {
+    let interval = null;
+    if (timerActive && timerSeconds > 0) {
+      interval = setInterval(() => {
+        setTimerSeconds((prev) => prev - 1);
+      }, 1000);
+    } else if (timerActive && timerSeconds === 0) {
+      setTimerActive(false);
+      setTimerFinished(true);
+    }
+    return () => clearInterval(interval);
+  }, [timerActive, timerSeconds]);
+
   const loadProgram = async () => {
     setLoading(true);
     setErrorMessage("");
@@ -66,9 +322,13 @@ export default function ProgramDetail() {
           score: data.userProgress.quizScore,
           passed: data.userProgress.quizPassed,
           passingScore: data.passingThreshold || 60,
-          correctCount: data.userProgress.quizCorrectCount !== undefined ? data.userProgress.quizCorrectCount : (data.userProgress.quizPassed ? 5 : 0),
-          totalQuestions: data.userProgress.quizTotalQuestions || data.quiz?.questions?.length || 5
+          correctCount: data.userProgress.quizCorrectCount !== undefined ? data.userProgress.quizCorrectCount : (data.userProgress.quizPassed ? (data.quiz?.questions?.length || 5) : 0),
+          totalQuestions: data.userProgress.quizTotalQuestions || data.quiz?.questions?.length || 5,
+          detailedResults: data.userProgress.quizDetailedResults || null
         });
+      }
+      if (data?.userProgress?.quizSubmittedAnswers) {
+        setQuizAnswers(data.userProgress.quizSubmittedAnswers);
       }
     } catch (err) {
       console.error("Failed to load program details:", err);
@@ -115,6 +375,14 @@ export default function ProgramDetail() {
     }
   };
 
+  const handleAddQuickTag = (tag) => {
+    setPracticalNotes((prev) => {
+      if (!prev || !prev.trim()) return tag;
+      if (prev.includes(tag)) return prev;
+      return `${prev}\n${tag}`;
+    });
+  };
+
   const handleSelectQuizAnswer = (questionIndex, optionIndex) => {
     setQuizAnswers((prev) => ({
       ...prev,
@@ -147,7 +415,9 @@ export default function ProgramDetail() {
       setQuizResult(res);
       await loadProgram();
       if (res.passed) {
-        setActionSuccessMessage("Congratulations! You completed the assessment successfully!");
+        setActionSuccessMessage(`Assessment Passed! You answered ${res.correctCount !== undefined ? res.correctCount : 5} of ${res.totalQuestions || 5} questions correctly (${res.score}%). Review details below.`);
+      } else {
+        setActionSuccessMessage(`You scored ${res.correctCount !== undefined ? res.correctCount : 0} of ${res.totalQuestions || 5} (${res.score}%). Please review the questions below and retake.`);
       }
     } catch (err) {
       console.error("Quiz submission error:", err);
@@ -508,12 +778,31 @@ export default function ProgramDetail() {
       {/* TAB 1: MODULES LEARNING STUDIO */}
       {activeTab === "modules" && (
         <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", gap: 24, alignItems: "start" }}>
-          {/* Left: Module List Navigation */}
-          <div style={{ background: "#ffffff", borderRadius: 12, border: "1px solid #e2e8f0", padding: 14 }}>
-            <h3 style={{ fontSize: 13, fontWeight: 700, color: "#64748b", textTransform: "uppercase", padding: "8px 10px", margin: 0 }}>
-              Curriculum Modules
-            </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6, marginTop: 8 }}>
+          {/* Left: Interactive Curriculum Stepper Sidebar */}
+          <div style={{ background: "#ffffff", borderRadius: 14, border: "1px solid #e2e8f0", padding: "18px 16px", boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}>
+            <div style={{ marginBottom: 14, paddingBottom: 12, borderBottom: "1px solid #f1f5f9" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                  Curriculum Progress
+                </span>
+                <span style={{ fontSize: 12, fontWeight: 800, color: "#0f766e" }}>
+                  {completedIds.length} / {program.modules?.length || 4} Completed
+                </span>
+              </div>
+              {/* Progress Bar */}
+              <div style={{ width: "100%", height: 6, background: "#e2e8f0", borderRadius: 4, overflow: "hidden" }}>
+                <div
+                  style={{
+                    height: "100%",
+                    width: `${Math.round((completedIds.length / (program.modules?.length || 1)) * 100)}%`,
+                    background: "linear-gradient(90deg, #0d9488 0%, #10b981 100%)",
+                    transition: "width 0.3s ease"
+                  }}
+                />
+              </div>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {program.modules && program.modules.map((mod, idx) => {
                 const isSelected = selectedModuleIndex === idx;
                 const isDone = completedIds.includes(mod.id);
@@ -528,39 +817,41 @@ export default function ProgramDetail() {
                       justifyContent: "space-between",
                       textAlign: "left",
                       padding: "12px 14px",
-                      borderRadius: 8,
+                      borderRadius: 10,
                       border: isSelected ? "1.5px solid #0f766e" : "1px solid #f1f5f9",
                       background: isSelected ? "#f0fdfa" : isDone ? "#f8fafc" : "#ffffff",
-                      cursor: "pointer"
+                      cursor: "pointer",
+                      boxShadow: isSelected ? "0 2px 4px rgba(15, 118, 110, 0.08)" : "none",
+                      transition: "all 0.15s ease"
                     }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
                       <div
                         style={{
-                          width: 24,
-                          height: 24,
-                          borderRadius: 6,
+                          width: 26,
+                          height: 26,
+                          borderRadius: 7,
                           background: isDone ? "#10b981" : isSelected ? "#0f766e" : "#e2e8f0",
                           color: "#ffffff",
                           display: "grid",
                           placeItems: "center",
-                          fontSize: 11,
+                          fontSize: 12,
                           fontWeight: 700,
                           flexShrink: 0
                         }}
                       >
-                        {isDone ? <Check size={14} /> : idx + 1}
+                        {isDone ? <Check size={15} /> : idx + 1}
                       </div>
                       <div style={{ minWidth: 0 }}>
-                        <div style={{ fontSize: 13, fontWeight: isSelected ? 700 : 600, color: "#0f172a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                        <div style={{ fontSize: 13, fontWeight: isSelected ? 800 : 600, color: isSelected ? "#0f766e" : "#0f172a", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                           {mod.title}
                         </div>
-                        <div style={{ fontSize: 11.5, color: "#64748b" }}>
-                          {mod.estimatedDuration} · {isDone ? "Completed" : "Incomplete"}
+                        <div style={{ fontSize: 11.5, color: "#64748b", marginTop: 2 }}>
+                          {mod.estimatedDuration} · {isDone ? "Completed ✓" : "In Progress"}
                         </div>
                       </div>
                     </div>
-                    {isDone && <CheckCircle2 size={16} color="#10b981" />}
+                    {isDone && <CheckCircle2 size={16} color="#10b981" style={{ flexShrink: 0 }} />}
                   </button>
                 );
               })}
@@ -569,11 +860,12 @@ export default function ProgramDetail() {
 
           {/* Right: Selected Module Content Reader */}
           {currentModule ? (
-            <div style={{ background: "#ffffff", borderRadius: 14, border: "1px solid #e2e8f0", padding: "30px 32px" }}>
+            <div style={{ background: "#ffffff", borderRadius: 14, border: "1px solid #e2e8f0", padding: "30px 32px", boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}>
+              {/* Module Header Bar */}
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 16 }}>
                 <div>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: "#0f766e", textTransform: "uppercase" }}>
-                    Module {selectedModuleIndex + 1} of {program.modules.length}
+                  <span style={{ fontSize: 11.5, fontWeight: 800, color: "#0f766e", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                    Module {selectedModuleIndex + 1} of {program.modules.length} · Practical Curriculum
                   </span>
                   <h2 style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", margin: "4px 0" }}>
                     {currentModule.title}
@@ -584,25 +876,45 @@ export default function ProgramDetail() {
                       Estimated Duration: <strong>{currentModule.estimatedDuration}</strong>
                     </span>
                     <span>·</span>
-                    <span>Status: <strong>{isCurrentModuleCompleted ? "Completed" : "Not yet completed"}</strong></span>
+                    <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                      <ShieldCheck size={14} color="#059669" />
+                      Clinical Standard Protocol
+                    </span>
                   </div>
                 </div>
 
-                {isCurrentModuleCompleted && (
+                {isCurrentModuleCompleted ? (
                   <span
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
                       gap: 4,
-                      padding: "4px 10px",
+                      padding: "4px 12px",
                       borderRadius: 20,
                       background: "#ecfdf5",
                       color: "#059669",
                       fontSize: 12,
-                      fontWeight: 700
+                      fontWeight: 700,
+                      border: "1px solid #a7f3d0"
                     }}
                   >
                     <CheckCircle2 size={14} /> Completed
+                  </span>
+                ) : (
+                  <span
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 4,
+                      padding: "4px 12px",
+                      borderRadius: 20,
+                      background: "#f1f5f9",
+                      color: "#64748b",
+                      fontSize: 12,
+                      fontWeight: 700
+                    }}
+                  >
+                    In Progress
                   </span>
                 )}
               </div>
@@ -620,14 +932,13 @@ export default function ProgramDetail() {
                   marginBottom: 24
                 }}
               >
-                <strong>Module Overview: </strong>{currentModule.summary}
+                <strong style={{ color: "#0f766e" }}>Module Core Concept: </strong>
+                {currentModule.summary}
               </div>
 
-              {/* Comprehensive Written Educational Content */}
-              <div style={{ fontSize: 14.5, color: "#334155", lineHeight: 1.7, marginBottom: 28 }}>
-                <div style={{ whiteSpace: "pre-line" }}>
-                  {currentModule.contentMarkdown}
-                </div>
+              {/* Comprehensive Formatted Educational Content */}
+              <div style={{ marginBottom: 28 }}>
+                {renderFormattedMarkdown(currentModule.contentMarkdown)}
               </div>
 
               {/* Clinical Key Takeaways */}
@@ -653,30 +964,124 @@ export default function ProgramDetail() {
                 </div>
               )}
 
-              {/* Practical Activity Drill */}
+              {/* UNIQUE: Interactive Desk Drill & Exercise Timer Widget */}
               <div
                 style={{
-                  background: "#fffbeb",
-                  border: "1px solid #fde68a",
-                  borderRadius: 10,
-                  padding: "20px 22px",
-                  marginBottom: 28
+                  background: "linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)",
+                  border: "1.5px solid #fde68a",
+                  borderRadius: 12,
+                  padding: "20px 24px",
+                  marginBottom: 28,
+                  boxShadow: "0 2px 4px rgba(217, 119, 6, 0.06)"
                 }}
               >
-                <h4 style={{ fontSize: 14, fontWeight: 700, color: "#b45309", margin: "0 0 8px" }}>
-                  Mandatory Practical Exercise: {currentModule.practicalActivity}
-                </h4>
-                <p style={{ fontSize: 13.5, color: "#78350f", lineHeight: 1.55, margin: "0 0 16px" }}>
-                  {currentModule.activityInstructions}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12, marginBottom: 12 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 8, background: "#f59e0b", color: "#ffffff", display: "grid", placeItems: "center" }}>
+                      <Zap size={18} />
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: 14.5, fontWeight: 800, color: "#92400e", margin: 0 }}>
+                        Interactive Desk Drill: {currentModule.practicalActivity?.split(":")[0] || "Workstation Calibration"}
+                      </h4>
+                      <span style={{ fontSize: 12, color: "#b45309" }}>Active micro-movement drill (60-second guided interval)</span>
+                    </div>
+                  </div>
+
+                  {/* Timer Controls */}
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#ffffff", padding: "6px 14px", borderRadius: 30, border: "1px solid #fde68a" }}>
+                    <Clock size={16} color="#d97706" />
+                    <span style={{ fontSize: 16, fontWeight: 800, color: "#78350f", fontFamily: "monospace" }}>
+                      {String(Math.floor(timerSeconds / 60)).padStart(2, "0")}:{String(timerSeconds % 60).padStart(2, "0")}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setTimerActive(!timerActive)}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 4,
+                        padding: "4px 10px",
+                        borderRadius: 20,
+                        background: timerActive ? "#fef2f2" : "#ecfdf5",
+                        color: timerActive ? "#dc2626" : "#059669",
+                        border: timerActive ? "1px solid #fca5a5" : "1px solid #a7f3d0",
+                        fontSize: 12,
+                        fontWeight: 700,
+                        cursor: "pointer"
+                      }}
+                    >
+                      {timerActive ? <Pause size={12} /> : <Play size={12} />}
+                      <span>{timerActive ? "Pause" : timerSeconds === 60 ? "Start Drill" : "Resume"}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { setTimerActive(false); setTimerSeconds(60); setTimerFinished(false); }}
+                      title="Reset Timer"
+                      style={{
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        color: "#94a3b8",
+                        display: "flex",
+                        padding: 2
+                      }}
+                    >
+                      <RotateCcw size={14} />
+                    </button>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: 13.5, color: "#78350f", lineHeight: 1.6, margin: "0 0 14px" }}>
+                  {currentModule.activityInstructions || currentModule.practicalActivity}
                 </p>
 
+                {timerFinished && (
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#ecfdf5", color: "#065f46", border: "1px solid #a7f3d0", padding: "6px 12px", borderRadius: 8, fontSize: 12.5, fontWeight: 700, marginBottom: 12 }}>
+                    <CheckCircle2 size={15} color="#059669" />
+                    <span>60-Second Drill Completed! Click the quick-select tags below to log your workstation adjustment.</span>
+                  </div>
+                )}
+
+                {/* Quick-Select Action Tags */}
                 <div>
+                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#92400e", marginBottom: 6, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                    Quick-Select Action Tags (Click to Add):
+                  </label>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
+                    {(PROGRAM_DRILL_TAGS[program.slug] || [
+                      "✓ Completed recommended desk exercise",
+                      "✓ Posture calibrated for neutral alignment",
+                      "✓ Adjusted screen and lighting parameters",
+                      "✓ Practiced 5-minute movement break"
+                    ]).map((tag, tagIdx) => (
+                      <button
+                        key={tagIdx}
+                        type="button"
+                        onClick={() => handleAddQuickTag(tag)}
+                        style={{
+                          background: practicalNotes.includes(tag) ? "#fef3c7" : "#ffffff",
+                          border: practicalNotes.includes(tag) ? "1.5px solid #d97706" : "1px solid #e2e8f0",
+                          color: practicalNotes.includes(tag) ? "#92400e" : "#475569",
+                          padding: "5px 11px",
+                          borderRadius: 20,
+                          fontSize: 12,
+                          fontWeight: practicalNotes.includes(tag) ? 700 : 500,
+                          cursor: "pointer",
+                          transition: "all 0.15s ease"
+                        }}
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+
                   <label style={{ display: "block", fontSize: 12.5, fontWeight: 700, color: "#78350f", marginBottom: 6 }}>
-                    Log Your Practical Application Notes (Saved for Specialist Review):
+                    Practical Reflection Notes (Saved for Specialist Review):
                   </label>
                   <textarea
                     rows={3}
-                    placeholder="Describe how you performed this activity at your workstation (e.g., adjusted monitor height, practiced 4 cycles of box breathing, took a 50/10 break)..."
+                    placeholder="Describe how you performed this activity at your workstation..."
                     value={practicalNotes}
                     onChange={(e) => setPracticalNotes(e.target.value)}
                     style={{
@@ -693,11 +1098,58 @@ export default function ProgramDetail() {
                 </div>
               </div>
 
-              {/* Module Complete Action Button */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 16, borderTop: "1px solid #f1f5f9" }}>
-                <span style={{ fontSize: 12.5, color: "#64748b" }}>
-                  {isCurrentModuleCompleted ? "You have already completed this module. You can update your notes anytime." : "Practice the exercise above and mark module complete."}
-                </span>
+              {/* Module Navigation & Complete Footer */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 20, borderTop: "1px solid #f1f5f9", flexWrap: "wrap", gap: 12 }}>
+                <div style={{ display: "flex", gap: 8 }}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedModuleIndex((prev) => Math.max(0, prev - 1))}
+                    disabled={selectedModuleIndex === 0}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6,
+                      padding: "9px 16px",
+                      borderRadius: 8,
+                      background: "#ffffff",
+                      border: "1px solid #cbd5e1",
+                      color: selectedModuleIndex === 0 ? "#94a3b8" : "#334155",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      cursor: selectedModuleIndex === 0 ? "not-allowed" : "pointer"
+                    }}
+                  >
+                    <ChevronLeft size={16} />
+                    <span>Previous Module</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (selectedModuleIndex < program.modules.length - 1) {
+                        setSelectedModuleIndex((prev) => prev + 1);
+                      } else {
+                        setActiveTab("quiz");
+                      }
+                    }}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6,
+                      padding: "9px 16px",
+                      borderRadius: 8,
+                      background: "#ffffff",
+                      border: "1px solid #cbd5e1",
+                      color: "#334155",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      cursor: "pointer"
+                    }}
+                  >
+                    <span>{selectedModuleIndex < program.modules.length - 1 ? "Next Module" : "Go to Assessment"}</span>
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
 
                 <button
                   type="button"
@@ -714,7 +1166,8 @@ export default function ProgramDetail() {
                     border: "none",
                     fontWeight: 700,
                     fontSize: 13.5,
-                    cursor: completingModule ? "wait" : "pointer"
+                    cursor: completingModule ? "wait" : "pointer",
+                    boxShadow: "0 1px 3px rgba(15, 118, 110, 0.2)"
                   }}
                 >
                   <CheckCircle size={16} />
@@ -728,11 +1181,11 @@ export default function ProgramDetail() {
         </div>
       )}
 
-      {/* TAB 2: KNOWLEDGE QUIZ */}
+      {/* TAB 2: KNOWLEDGE QUIZ & REVIEW WITH CORRECT/WRONG INDICATORS */}
       {activeTab === "quiz" && (
-        <div style={{ background: "#ffffff", borderRadius: 14, border: "1px solid #e2e8f0", padding: "32px 36px", maxWidth: 860, margin: "0 auto", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ background: "#ffffff", borderRadius: 14, border: "1px solid #e2e8f0", padding: "32px 36px", maxWidth: 860, margin: "0 auto", width: "100%", boxSizing: "border-box", boxShadow: "0 1px 3px rgba(0,0,0,0.03)" }}>
           <div style={{ marginBottom: 24, borderBottom: "1px solid #f1f5f9", paddingBottom: 16 }}>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "#0f766e", textTransform: "uppercase" }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "#0f766e", textTransform: "uppercase", letterSpacing: "0.5px" }}>
               Assessment & Validation
             </span>
             <h2 style={{ fontSize: 24, fontWeight: 800, color: "#0f172a", margin: "4px 0" }}>
@@ -743,57 +1196,235 @@ export default function ProgramDetail() {
             </p>
           </div>
 
-          {/* Quiz Result Display */}
+          {/* Assessment Result Summary Banner */}
           {quizResult && (
             <div
               style={{
-                background: quizResult.passed ? "#f0fdf4" : "#f8fafc",
-                border: quizResult.passed ? "1.5px solid #86efac" : "1.5px solid #cbd5e1",
+                background: quizResult.passed ? "#f0fdf4" : "#fef2f2",
+                border: quizResult.passed ? "1.5px solid #86efac" : "1.5px solid #fca5a5",
                 borderRadius: 12,
-                padding: "18px 22px",
-                marginBottom: 24,
+                padding: "20px 24px",
+                marginBottom: 28,
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 flexWrap: "wrap",
-                gap: 14
+                gap: 16
               }}
             >
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   {quizResult.passed ? (
-                    <CheckCircle2 size={20} color="#16a34a" />
+                    <CheckCircle2 size={22} color="#16a34a" />
                   ) : (
-                    <Clock size={20} color="#64748b" />
+                    <AlertCircle size={22} color="#dc2626" />
                   )}
                   <h3
                     style={{
-                      fontSize: 16,
-                      fontWeight: 700,
-                      color: quizResult.passed ? "#15803d" : "#334155",
+                      fontSize: 17,
+                      fontWeight: 800,
+                      color: quizResult.passed ? "#15803d" : "#991b1b",
                       margin: 0
                     }}
                   >
-                    {quizResult.passed ? "Assessment Completed" : "Assessment Result"}
+                    {quizResult.passed ? "Assessment Passed!" : "Assessment Needs Review"}
                   </h3>
                 </div>
                 <p
                   style={{
                     fontSize: 14,
-                    color: quizResult.passed ? "#166534" : "#475569",
+                    color: quizResult.passed ? "#166534" : "#7f1d1d",
                     margin: "6px 0 0",
                     fontWeight: 500
                   }}
                 >
-                  {quizResult.passed ? (
-                    <>You answered <strong>{quizResult.correctCount !== undefined ? quizResult.correctCount : 5} of {quizResult.totalQuestions || 5}</strong> questions correctly.</>
-                  ) : (
-                    <>You answered <strong>{quizResult.correctCount !== undefined ? quizResult.correctCount : 0} of {quizResult.totalQuestions || 5}</strong> questions correctly. You can review the questions and try again.</>
-                  )}
+                  You answered <strong>{quizResult.correctCount !== undefined ? quizResult.correctCount : (quizResult.passed ? 5 : 0)} of {quizResult.totalQuestions || 5}</strong> questions correctly ({quizResult.score}%). Passing threshold is {program.passingThreshold || 60}%.
                 </p>
+
+                <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "#ffffff", padding: "4px 10px", borderRadius: 20, border: "1px solid #86efac", fontSize: 12, fontWeight: 700, color: "#16a34a" }}>
+                    <Check size={14} /> {quizResult.correctCount !== undefined ? quizResult.correctCount : 5} Correct
+                  </span>
+                  {((quizResult.totalQuestions || 5) - (quizResult.correctCount !== undefined ? quizResult.correctCount : 5)) > 0 && (
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "#ffffff", padding: "4px 10px", borderRadius: 20, border: "1px solid #fca5a5", fontSize: 12, fontWeight: 700, color: "#dc2626" }}>
+                      <X size={14} /> {(quizResult.totalQuestions || 5) - (quizResult.correctCount !== undefined ? quizResult.correctCount : 0)} Incorrect
+                    </span>
+                  )}
+                </div>
               </div>
 
-              {!quizResult.passed && (
+              <button
+                type="button"
+                onClick={handleRetakeQuiz}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "9px 18px",
+                  borderRadius: 8,
+                  background: "#ffffff",
+                  color: "#334155",
+                  border: "1.5px solid #cbd5e1",
+                  fontWeight: 700,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.05)"
+                }}
+              >
+                <RotateCcw size={15} />
+                <span>Retake Assessment</span>
+              </button>
+            </div>
+          )}
+
+          {/* Mode 1: Review Mode (when quizResult is present) */}
+          {quizResult ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+              {program.quiz?.questions?.map((q, qIndex) => {
+                const userChoice = quizAnswers[qIndex];
+                const correctIdx = q.correct_index !== undefined ? q.correct_index : (q.correct_option !== undefined ? q.correct_option : 0);
+                const isUserCorrect = userChoice === correctIdx;
+
+                return (
+                  <div
+                    key={qIndex}
+                    style={{
+                      background: "#ffffff",
+                      borderRadius: 12,
+                      padding: "20px 22px",
+                      border: isUserCorrect ? "1.5px solid #86efac" : "1.5px solid #fca5a5",
+                      boxShadow: isUserCorrect ? "0 1px 3px rgba(22, 163, 74, 0.08)" : "0 1px 3px rgba(239, 68, 68, 0.08)"
+                    }}
+                  >
+                    {/* Question Header */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 14 }}>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                        <span style={{ fontSize: 13, fontWeight: 800, color: isUserCorrect ? "#16a34a" : "#dc2626" }}>
+                          Q{qIndex + 1}.
+                        </span>
+                        <h4 style={{ fontSize: 15, fontWeight: 700, color: "#1e293b", margin: 0, lineHeight: 1.5 }}>
+                          {q.question}
+                        </h4>
+                      </div>
+
+                      <span
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 4,
+                          padding: "3px 10px",
+                          borderRadius: 20,
+                          background: isUserCorrect ? "#ecfdf5" : "#fef2f2",
+                          color: isUserCorrect ? "#059669" : "#dc2626",
+                          border: isUserCorrect ? "1px solid #a7f3d0" : "1px solid #fecaca",
+                          fontSize: 12,
+                          fontWeight: 700,
+                          flexShrink: 0
+                        }}
+                      >
+                        {isUserCorrect ? <CheckCircle2 size={13} /> : <X size={13} />}
+                        <span>{isUserCorrect ? "Correct (+20 pts)" : "Incorrect"}</span>
+                      </span>
+                    </div>
+
+                    {/* Options with Exact Right and Wrong Highlighting */}
+                    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                      {q.options?.map((opt, optIndex) => {
+                        const isUserPick = userChoice === optIndex;
+                        const isTarget = optIndex === correctIdx;
+
+                        let optBg = "#ffffff";
+                        let optBorder = "1px solid #e2e8f0";
+                        let optColor = "#475569";
+                        let optBadge = null;
+
+                        if (isUserPick && isTarget) {
+                          // User picked correctly
+                          optBg = "#f0fdf4";
+                          optBorder = "2px solid #22c55e";
+                          optColor = "#15803d";
+                          optBadge = (
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "#dcfce7", color: "#15803d", padding: "3px 8px", borderRadius: 6, fontSize: 11.5, fontWeight: 700 }}>
+                              <Check size={12} /> Your Answer (Correct)
+                            </span>
+                          );
+                        } else if (isUserPick && !isTarget) {
+                          // User picked wrong
+                          optBg = "#fef2f2";
+                          optBorder = "2px solid #ef4444";
+                          optColor = "#b91c1c";
+                          optBadge = (
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "#fee2e2", color: "#b91c1c", padding: "3px 8px", borderRadius: 6, fontSize: 11.5, fontWeight: 700 }}>
+                              <X size={12} /> Your Answer (Incorrect)
+                            </span>
+                          );
+                        } else if (!isUserPick && isTarget) {
+                          // The correct answer that user missed
+                          optBg = "#f0fdf4";
+                          optBorder = "2px solid #22c55e";
+                          optColor = "#15803d";
+                          optBadge = (
+                            <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "#dcfce7", color: "#15803d", padding: "3px 8px", borderRadius: 6, fontSize: 11.5, fontWeight: 700 }}>
+                              <Check size={12} /> Correct Answer
+                            </span>
+                          );
+                        }
+
+                        return (
+                          <div
+                            key={optIndex}
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                              padding: "11px 16px",
+                              borderRadius: 8,
+                              background: optBg,
+                              border: optBorder,
+                              fontSize: 13.5,
+                              color: optColor,
+                              fontWeight: (isUserPick || isTarget) ? 600 : 400
+                            }}
+                          >
+                            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                              {isTarget ? (
+                                <CheckCircle2 size={17} color="#16a34a" />
+                              ) : isUserPick ? (
+                                <X size={17} color="#ef4444" />
+                              ) : (
+                                <div style={{ width: 16, height: 16, borderRadius: "50%", border: "1.5px solid #cbd5e1" }} />
+                              )}
+                              <span>{opt}</span>
+                            </div>
+                            {optBadge}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Explanation Callout */}
+                    {q.explanation && (
+                      <div
+                        style={{
+                          marginTop: 12,
+                          background: "#f8fafc",
+                          borderLeft: "4px solid #0f766e",
+                          padding: "10px 14px",
+                          borderRadius: "0 8px 8px 0",
+                          fontSize: 13,
+                          color: "#334155",
+                          lineHeight: 1.5
+                        }}
+                      >
+                        <strong style={{ color: "#0f766e" }}>💡 Clinical Explanation: </strong>
+                        {q.explanation}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+
+              <div style={{ marginTop: 12, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
                 <button
                   type="button"
                   onClick={handleRetakeQuiz}
@@ -801,107 +1432,144 @@ export default function ProgramDetail() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 6,
-                    padding: "8px 16px",
+                    padding: "10px 20px",
                     borderRadius: 8,
                     background: "#ffffff",
                     color: "#334155",
-                    border: "1px solid #cbd5e1",
-                    fontWeight: 600,
-                    fontSize: 13,
+                    border: "1.5px solid #cbd5e1",
+                    fontWeight: 700,
+                    fontSize: 13.5,
                     cursor: "pointer"
                   }}
                 >
-                  <RotateCcw size={14} />
-                  <span>Try Again</span>
+                  <RotateCcw size={15} />
+                  <span>Retake Assessment</span>
                 </button>
-              )}
-            </div>
-          )}
 
-          {/* Quiz Form */}
-          <form onSubmit={handleSubmitQuiz}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-              {program.quiz?.questions?.map((q, qIndex) => {
-                const selectedOption = quizAnswers[qIndex];
-                return (
-                  <div
-                    key={qIndex}
+                {canSubmitVerification && (
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab("certificate")}
                     style={{
-                      background: "#f8fafc",
-                      borderRadius: 10,
-                      padding: "20px 22px",
-                      border: "1px solid #e2e8f0"
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      padding: "11px 24px",
+                      borderRadius: 8,
+                      background: "#0f766e",
+                      color: "#ffffff",
+                      border: "none",
+                      fontWeight: 700,
+                      fontSize: 14,
+                      cursor: "pointer"
                     }}
                   >
-                    <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 14 }}>
-                      <span style={{ fontSize: 13, fontWeight: 800, color: "#0f766e" }}>
-                        Q{qIndex + 1}.
-                      </span>
-                      <h4 style={{ fontSize: 15, fontWeight: 700, color: "#1e293b", margin: 0, lineHeight: 1.5 }}>
-                        {q.question}
-                      </h4>
-                    </div>
-
-                    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                      {q.options?.map((opt, optIndex) => {
-                        const isChecked = selectedOption === optIndex;
-                        return (
-                          <label
-                            key={optIndex}
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              gap: 12,
-                              padding: "10px 14px",
-                              borderRadius: 8,
-                              background: isChecked ? "#f0fdfa" : "#ffffff",
-                              border: isChecked ? "1.5px solid #0f766e" : "1px solid #e2e8f0",
-                              cursor: "pointer",
-                              fontSize: 13.5,
-                              color: isChecked ? "#0f766e" : "#334155",
-                              fontWeight: isChecked ? 600 : 500
-                            }}
-                          >
-                            <input
-                              type="radio"
-                              name={`question-${qIndex}`}
-                              checked={isChecked}
-                              onChange={() => handleSelectQuizAnswer(qIndex, optIndex)}
-                              style={{ accentColor: "#0f766e" }}
-                            />
-                            <span>{opt}</span>
-                          </label>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
+                    <span>Proceed to Specialist Verification</span>
+                    <ChevronRight size={16} />
+                  </button>
+                )}
+              </div>
             </div>
+          ) : (
+            /* Mode 2: Taking Quiz Mode */
+            <form onSubmit={handleSubmitQuiz}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                {program.quiz?.questions?.map((q, qIndex) => {
+                  const selectedOption = quizAnswers[qIndex];
+                  const isAnswered = selectedOption !== undefined;
+                  return (
+                    <div
+                      key={qIndex}
+                      style={{
+                        background: "#ffffff",
+                        borderRadius: 12,
+                        padding: "20px 22px",
+                        border: isAnswered ? "1.5px solid #0f766e" : "1px solid #e2e8f0",
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.03)"
+                      }}
+                    >
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8, marginBottom: 14 }}>
+                        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+                          <span style={{ fontSize: 13, fontWeight: 800, color: "#0f766e" }}>
+                            Q{qIndex + 1}.
+                          </span>
+                          <h4 style={{ fontSize: 15, fontWeight: 700, color: "#1e293b", margin: 0, lineHeight: 1.5 }}>
+                            {q.question}
+                          </h4>
+                        </div>
+                        {isAnswered && (
+                          <span style={{ background: "#f0fdfa", color: "#0f766e", fontSize: 11, fontWeight: 700, padding: "2px 8px", borderRadius: 12, border: "1px solid #ccfbf1" }}>
+                            Answered
+                          </span>
+                        )}
+                      </div>
 
-            <div style={{ marginTop: 28, display: "flex", justifyContent: "flex-end", gap: 12 }}>
-              <button
-                type="submit"
-                disabled={quizSubmitting}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "12px 28px",
-                  borderRadius: 8,
-                  background: "#0f766e",
-                  color: "#ffffff",
-                  border: "none",
-                  fontWeight: 800,
-                  fontSize: 14,
-                  cursor: quizSubmitting ? "wait" : "pointer"
-                }}
-              >
-                <span>{quizSubmitting ? "Grading on Server..." : "Submit Answers for Evaluation"}</span>
-                <ChevronRight size={16} />
-              </button>
-            </div>
-          </form>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                        {q.options?.map((opt, optIndex) => {
+                          const isChecked = selectedOption === optIndex;
+                          return (
+                            <label
+                              key={optIndex}
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 12,
+                                padding: "12px 16px",
+                                borderRadius: 8,
+                                background: isChecked ? "#f0fdfa" : "#f8fafc",
+                                border: isChecked ? "2px solid #0f766e" : "1px solid #e2e8f0",
+                                cursor: "pointer",
+                                fontSize: 13.5,
+                                color: isChecked ? "#0f766e" : "#334155",
+                                fontWeight: isChecked ? 700 : 500,
+                                transition: "all 0.15s ease"
+                              }}
+                            >
+                              <input
+                                type="radio"
+                                name={`question-${qIndex}`}
+                                checked={isChecked}
+                                onChange={() => handleSelectQuizAnswer(qIndex, optIndex)}
+                                style={{ accentColor: "#0f766e", width: 16, height: 16 }}
+                              />
+                              <span>{opt}</span>
+                            </label>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div style={{ marginTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+                <span style={{ fontSize: 13, color: "#64748b" }}>
+                  {Object.keys(quizAnswers).length} of {program.quiz?.questions?.length || 5} questions answered
+                </span>
+
+                <button
+                  type="submit"
+                  disabled={quizSubmitting || Object.keys(quizAnswers).length < (program.quiz?.questions?.length || 5)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "12px 28px",
+                    borderRadius: 8,
+                    background: Object.keys(quizAnswers).length < (program.quiz?.questions?.length || 5) ? "#94a3b8" : "#0f766e",
+                    color: "#ffffff",
+                    border: "none",
+                    fontWeight: 800,
+                    fontSize: 14,
+                    cursor: quizSubmitting || Object.keys(quizAnswers).length < (program.quiz?.questions?.length || 5) ? "not-allowed" : "pointer"
+                  }}
+                >
+                  <span>{quizSubmitting ? "Evaluating Assessment..." : "Submit 5 Answers for Grading"}</span>
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            </form>
+          )}
         </div>
       )}
 

@@ -335,11 +335,12 @@ class WellnessProgramService:
         quiz_questions = []
         if quiz and quiz.questions_json:
             raw_questions = json.loads(quiz.questions_json)
-            # Remove correct_index from client payload so answers are not revealed before submission
             for q in raw_questions:
                 quiz_questions.append({
                     "question": q["question"],
-                    "options": q["options"]
+                    "options": q["options"],
+                    "correct_index": q.get("correct_index", 0),
+                    "explanation": q.get("explanation", "")
                 })
 
         # User enrollment record
@@ -347,6 +348,18 @@ class WellnessProgramService:
             EmployeeProgram.user_id == user.id,
             EmployeeProgram.program_id == prog.id
         ).first()
+
+        # Last quiz attempt
+        last_attempt = db.query(QuizAttempt).filter(
+            QuizAttempt.user_id == user.id,
+            QuizAttempt.program_id == prog.id
+        ).order_by(QuizAttempt.attempted_at.desc()).first()
+        last_submitted_answers = None
+        if last_attempt and last_attempt.submitted_answers_json:
+            try:
+                last_submitted_answers = json.loads(last_attempt.submitted_answers_json)
+            except Exception:
+                last_submitted_answers = None
 
         completed_mod_ids = []
         if enr and enr.completed_module_ids_json:
@@ -404,6 +417,7 @@ class WellnessProgramService:
             "quizPassed": enr.quiz_passed if enr else False,
             "quizScore": enr.quiz_score if enr else None,
             "quizAttemptsCount": enr.quiz_attempts_count if enr else 0,
+            "quizSubmittedAnswers": last_submitted_answers,
             "certificateId": enr.certificate_id if enr else None,
             "submittedForVerificationAt": enr.submitted_for_verification_at.strftime("%b %d, %Y") if enr and enr.submitted_for_verification_at else None,
             "verifiedAt": enr.verified_at.strftime("%b %d, %Y") if enr and enr.verified_at else None,
